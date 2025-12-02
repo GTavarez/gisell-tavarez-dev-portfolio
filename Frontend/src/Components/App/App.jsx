@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -5,20 +6,52 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+=======
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Home Page Sections (called directly inside App)
+import Hero from "../Hero/Hero";
+import About from "../About/About";
+import Skills from "../Skills/Skills";
+import Projects from "../Projects/Projects";
+import Contact from "../Contact/Contact";
+
+// Case Study Pages
+import HuskiesHub from "../../Pages/HuskiesHub/HuskiesHub";
+import SmartBudgetPlanner from "../../Pages/SmartBudgetPlanner/SmartBudgetPlanner";
+
+// Global layout components
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+>>>>>>> Stashed changes
 
 function App() {
   return (
-    <div className="app-shell">
+    <Router>
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
+
+      <Routes>
+        {/* 🔵 MAIN PORTFOLIO PAGE */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Contact />
+            </>
+          }
+        />
+
+        {/* 🔵 CASE STUDIES */}
+        <Route path="/huskieshub" element={<HuskiesHub />} />
+        <Route path="/smart-budget-planner" element={<SmartBudgetPlanner />} />
+      </Routes>
+
       <Footer />
-    </div>
+    </Router>
   );
 }
 
