@@ -74,3 +74,42 @@
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
 }
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero__title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Extra small */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 1.7rem;
+  }
+}

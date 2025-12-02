@@ -1,9 +1,16 @@
 import "./Hero.css";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../Utils/Motion";
 
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="hero__content">
+      <motion.div
+        className="hero__content"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="show"
+      >
         <p className="hero__tag">Portfolio 2025</p>
         <h1 className="hero__title">
           Hi, I’m <span className="hero__title--highlight">Gisell</span>.
@@ -15,30 +22,17 @@ export default function Hero() {
           real-world impact.
         </p>
 
-        <div className="hero__actions">
-          <button
-            className="hero__btn hero__btn--primary"
-            onClick={() =>
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
+        <motion.div
+          className="hero__actions"
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+        >
+          <button className="hero__btn hero__btn--primary">
             View Projects
           </button>
-
-          <button
-            className="hero__btn hero__btn--outline"
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Contact Me
-          </button>
-        </div>
-      </div>
+          <button className="hero__btn hero__btn--outline">Contact Me</button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

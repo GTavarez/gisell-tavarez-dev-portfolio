@@ -1,28 +1,39 @@
+import { useState } from "react";
 import "./Navbar.css";
 
-const navItems = [
-  { id: "hero", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
-];
-
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setOpen(false);
   };
 
   return (
     <header className="navbar">
       <nav className="navbar__container">
-        <div className="navbar__logo">GT</div>
+        <div className="navbar__logo">
+          <img src="/logo.svg" alt="GT Logo" />
+        </div>
 
-        <ul className="navbar__menu">
-          {navItems.map((item) => (
-            <li key={item.id} className="navbar__item">
-              <button className="navbar__link" onClick={() => scrollTo(item.id)}>
-                {item.label}
+        {/* Hamburger */}
+        <button
+          className="navbar__toggle"
+          onClick={() => setOpen(!open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul className={`navbar__menu ${open ? "navbar__menu--open" : ""}`}>
+          {["home", "about", "skills", "projects", "contact"].map((section) => (
+            <li key={section} className="navbar__item">
+              <button
+                className="navbar__link"
+                onClick={() => scrollTo(section)}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
               </button>
             </li>
           ))}

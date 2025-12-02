@@ -1,0 +1,74 @@
+@import "../../theme.css";
+
+.project-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.project-card__title {
+  font-size: 1.3rem;
+  font-family: var(--font-head);
+}
+
+.project-card__role {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.project-card__description {
+  color: var(--text-muted);
+}
+
+.project-card__tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.project-card__tag {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  background: #020617;
+  color: var(--text-primary);
+}
+
+.project-card__links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-card__link {
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.project-card__link--live {
+  color: var(--accent-cyan);
+}
+
+.project-card__link--github {
+  color: var(--accent-purple);
+}
+@media (max-width: 768px) {
+  .project-card {
+    padding: 1.2rem;
+  }
+
+  .project-card__title {
+    font-size: 1.1rem;
+  }
+}
