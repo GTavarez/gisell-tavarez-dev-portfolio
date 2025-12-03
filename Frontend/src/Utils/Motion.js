@@ -1,8 +1,10 @@
 export const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+  animation: "fadeInUp 0.6s ease forwards",
 };
+
+export const fadeStyles = `
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+`;

@@ -2,9 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,8 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "googleapis": "^166.0.0",
-    "nodemailer": "^7.0.11"
+    "nodemailer": "^7.0.11",
+    "pdfkit": "^0.17.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"

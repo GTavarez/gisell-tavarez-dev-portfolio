@@ -1,0 +1,260 @@
+.hh-dashboard {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+  background: radial-gradient(
+    circle at top,
+    #272a60 0,
+    #050518 55%,
+    #02010a 100%
+  );
+  color: #f7f7ff;
+}
+
+/* Sidebar */
+.hh-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.8rem 1.2rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: rgba(4, 4, 24, 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.hh-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.hh-tagline {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.hh-nav {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hh-nav-link {
+  color: #c4c5ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  transition: 0.2s ease;
+}
+
+.hh-nav-link:hover {
+  background: rgba(122, 126, 255, 0.2);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* Main area */
+.hh-main {
+  padding: 1.8rem 2.2rem 3rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.hh-section {
+  margin-bottom: 2.4rem;
+}
+
+.hh-section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* KPI cards */
+.hh-overview-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.hh-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.hh-kpi-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.hh-kpi-value {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.hh-kpi-caption {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* Roster */
+.hh-roster-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.hh-player-card {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.hh-player-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6a5acd, #b49bff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.hh-player-info {
+  flex: 1;
+}
+
+.hh-player-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hh-player-meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.hh-player-commit {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: #9ee2ff;
+}
+
+/* List (schedule, clinics) */
+.hh-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.hh-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.hh-list-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hh-list-meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Pills */
+.hh-pill {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hh-pill--game {
+  background: rgba(144, 238, 144, 0.2);
+  color: #c8ffc8;
+}
+
+.hh-pill--scrimmage {
+  background: rgba(255, 215, 0, 0.18);
+  color: #ffec9a;
+}
+
+.hh-pill--tournament {
+  background: rgba(255, 99, 132, 0.2);
+  color: #ffc4d1;
+}
+
+/* Commits */
+.hh-commits-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.hh-commit-card {
+  padding: 1.1rem 1.2rem;
+}
+
+.hh-commit-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hh-commit-school {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.hh-commit-meta {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Map placeholder */
+.hh-map-placeholder {
+  text-align: left;
+}
+
+.hh-map-title {
+  font-weight: 600;
+}
+
+.hh-map-caption {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hh-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .hh-sidebar {
+    position: relative;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hh-main {
+    padding: 1.6rem 1.4rem 3rem;
+  }
+}

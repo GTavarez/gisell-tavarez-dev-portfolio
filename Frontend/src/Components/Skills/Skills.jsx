@@ -1,67 +1,45 @@
 import "./Skills.css";
-import { motion } from "framer-motion";
-import { fadeInUp } from "../../Utils/Motion";
 
-const skills = [
+const SKILL_GROUPS = [
   {
-    category: "Frontend",
-    items: [
-      "React",
-      "Vite",
-      "JavaScript",
-      "HTML5",
-      "CSS3",
-      "Responsive Design",
-    ],
+    label: "Frontend",
+    items: ["React", "JavaScript", "HTML5", "CSS3", "Responsive Design"],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "Express", "REST APIs", "MongoDB", "JWT Auth"],
+    label: "Backend",
+    items: ["Node.js", "Express", "REST APIs", "MongoDB"],
   },
   {
-    category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Postman", "Netlify", "Vercel"],
+    label: "Tools",
+    items: ["Git & GitHub", "Vite", "NPM", "Postman"],
   },
   {
-    category: "Design & UX",
-    items: [
-      "Figma",
-      "Wireframing",
-      "Component Systems",
-      "Accessibility Basics",
-    ],
+    label: "Mindset",
+    items: ["Calm under pressure", "Teamwork", "Rapid learning"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="skills">
-      <div className="skills__container">
-        <p className="skills__tag">Skills & Tools</p>
-        <h2 className="skills__title">What I Use</h2>
+    <section id="skills" className="section skills">
+      <h2 className="section__title">Skills</h2>
+      <p className="section__subtitle">
+        A mix of engineering, operations, and emergency-medicine thinking.
+      </p>
 
-        <div className="skills__grid">
-          {skills.map((group, i) => (
-            <motion.div
-              key={group.category}
-              className="skills__card"
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="show"
-              transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="skills__card-title">{group.category}</h3>
-              <ul className="skills__list">
-                {group.items.map((item) => (
-                  <li key={item} className="skills__item">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+      <div className="skills__grid">
+        {SKILL_GROUPS.map((group) => (
+          <div className="card skills__group" key={group.label}>
+            <h3 className="skills__group-title">{group.label}</h3>
+            <div className="skills__chips">
+              {group.items.map((skill) => (
+                <span className="skills__chip" key={skill}>
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

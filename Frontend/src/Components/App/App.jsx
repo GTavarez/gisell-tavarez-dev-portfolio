@@ -1,26 +1,42 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Hero from "../Hero/Hero";
 import About from "../About/About";
 import Skills from "../Skills/Skills";
 import Projects from "../Projects/Projects";
 import Contact from "../Contact/Contact";
-import Footer from "../Footer/Footer";
+import HuskiesHub from "../../Pages/HuskiesHub/HuskiesHub";
+import SmartBudgetPlanner from "../../Pages/SmartBudgetPlanner/SmartBudgetPlanner";
+import Resume from "../../Pages/Resume/Resume";
+
+
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="app-shell">
+    <Router>
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+
+      <Routes>
+        {/* MAIN PORTFOLIO HOME */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Contact />
+            </>
+          }
+        />
+
+        {/* CASE STUDIES */}
+        <Route path="/huskieshub" element={<HuskiesHub />} />
+        <Route path="/smart-budget-planner" element={<SmartBudgetPlanner />} />
+        <Route path="/resume" element={<Resume />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

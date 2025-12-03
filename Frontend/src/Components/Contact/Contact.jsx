@@ -1,89 +1,45 @@
 import "./Contact.css";
-import { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Contact() {
-  const [status, setStatus] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-
-    const payload = Object.fromEntries(form.entries());
-
-    try {
-      const res = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error();
-      setStatus("success");
-      e.target.reset();
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
-    <section id="contact" className="contact">
-      <div className="contact__container">
-        <p className="contact__tag">Contact</p>
-        <h2 className="contact__title">Let’s Work Together</h2>
+    <section id="contact" className="section contact">
+      <h2 className="section__title">Contact</h2>
+      <p className="section__subtitle">
+        Open to full-stack roles, frontend-leaning roles, and projects that
+        blend healthcare and technology.
+      </p>
 
-        <form onSubmit={handleSubmit} className="contact__form">
-          <div className="contact__field">
-            <label className="contact__label">Name</label>
-            <input name="name" required className="contact__input" />
-          </div>
+      <div className="card contact__card">
+        <p className="contact__text">
+          The fastest way to reach me is by email or LinkedIn. Send a short
+          note about what you&apos;re working on, and I&apos;ll get back as
+          soon as possible.
+        </p>
 
-          <div className="contact__field">
-            <label className="contact__label">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              className="contact__input"
-            />
-          </div>
-
-          <div className="contact__field">
-            <label className="contact__label">Message</label>
-            <textarea
-              name="message"
-              rows="5"
-              required
-              className="contact__textarea"
-            ></textarea>
-          </div>
-
-          <motion.form
-            onSubmit={handleSubmit}
-            className="contact__form"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+        <div className="contact__links">
+          <a
+            href="mailto:giselltavarez58@gmail.com"
+            className="contact__btn contact__btn--primary"
           >
-            ...
-          </motion.form>
-
-          <motion.button className="contact__button" whileTap={{ scale: 0.96 }}>
-            Send Message
-          </motion.button>
-
-          {status === "success" && (
-            <p className="contact__status contact__status--success">
-              Message sent!
-            </p>
-          )}
-          {status === "error" && (
-            <p className="contact__status contact__status--error">
-              Something went wrong. Try again.
-            </p>
-          )}
-        </form>
+            Email Me
+          </a>
+          <a
+            href="https://www.linkedin.com/in/gisell-tavarez"
+            target="_blank"
+            rel="noreferrer"
+            className="contact__btn"
+          >
+            View LinkedIn
+          </a>
+          <a
+            href="https://github.com/GTavarez"
+            target="_blank"
+            rel="noreferrer"
+            className="contact__btn"
+          >
+            View GitHub
+          </a>
+        </div>
       </div>
     </section>
   );
