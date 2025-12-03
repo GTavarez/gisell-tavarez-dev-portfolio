@@ -1,17 +1,8 @@
-<<<<<<< Updated upstream
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-=======
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Home Page Sections (called directly inside App)
 import Hero from "../Hero/Hero";
-import About from "../About/About";
+/* import About from "../About/About"; */
 import Skills from "../Skills/Skills";
 import Projects from "../Projects/Projects";
 import Contact from "../Contact/Contact";
@@ -22,8 +13,7 @@ import SmartBudgetPlanner from "../../Pages/SmartBudgetPlanner/SmartBudgetPlanne
 
 // Global layout components
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
->>>>>>> Stashed changes
+/* import Footer from "../Footer/Footer"; */
 
 function App() {
   return (
@@ -37,7 +27,7 @@ function App() {
           element={
             <>
               <Hero />
-              <About />
+              {/* <About /> */}
               <Skills />
               <Projects />
               <Contact />
@@ -50,7 +40,7 @@ function App() {
         <Route path="/smart-budget-planner" element={<SmartBudgetPlanner />} />
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
