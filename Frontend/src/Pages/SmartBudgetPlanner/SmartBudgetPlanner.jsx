@@ -1,116 +1,182 @@
-import React, { useState } from "react";
-
-import { categories } from "../../Data/categories";
-import benchmarkData from "../../Data/benchmarkData";
-
-import ExpenseChart from "../../Components/Charts/ExpenseChart";
+import "./SmartBudgetPlanner.css";
+import { motion } from "framer-motion";
 import { fadeInUp } from "../../utils/motion";
+import { useState } from "react";
+import Lightbox from "../../Components/Lightbox/Lightbox";
 
-function SmartBudgetPlanner() {
-  const [expenses, setExpenses] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    category: "",
-    amount: "",
-  });
+export default function SmartBudgetPlanner() {
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const addExpense = () => {
-    if (!form.name || !form.category || !form.amount) return;
-
-    setExpenses([
-      ...expenses,
-      {
-        id: Date.now(),
-        ...form,
-        amount: Number(form.amount),
-      },
-    ]);
-
-    setForm({ name: "", category: "", amount: "" });
-  };
+  const images = [
+    {
+      src: "/images/sbp/dashboard.png",
+      alt: "Smart Budget Planner Dashboard",
+    },
+    {
+      src: "/images/sbp/categories.png",
+      alt: "Category Breakdown Chart",
+    },
+    {
+      src: "/images/sbp/monthly.png",
+      alt: "Monthly Spending Overview",
+    },
+    {
+      src: "/images/sbp/country.png",
+      alt: "Country Detection Display",
+    },
+  ];
 
   return (
-    <div className="sbp-container">
-      <h1 className="sbp-title">Smart Budget Planner 💸</h1>
-      <p className="sbp-subtitle">
-        Track your spending and compare against country benchmarks.
-      </p>
+    <section className="case">
+      {/* HEADER */}
+      <div className="case__header">
+        <motion.h1
+          className="case__title"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="show"
+        >
+          Smart Budget Planner
+        </motion.h1>
+        <p className="case__subtitle">
+          A data-informed budgeting platform with dashboards, benchmark
+          comparisons, and location-aware insights.
+        </p>
+      </div>
 
-      {/* Expense Form */}
-      <div className="sbp-card" style={fadeInUp}>
-        <h2 className="sbp-section-title">Add Expense</h2>
+      {/* OVERVIEW */}
+      <div className="case__section">
+        <h2 className="case__section-title">Overview</h2>
+        <p className="case__text">
+          Smart Budget Planner helps users understand and optimize their
+          spending using interactive dashboards, category breakdowns, and
+          country-specific benchmark data. The interface is intentionally clean
+          and intuitive, focusing on visualization and actionable insight.
+        </p>
+      </div>
 
-        <div className="sbp-form">
-          <input
-            name="name"
-            placeholder="Expense Name"
-            value={form.name}
-            onChange={handleChange}
-          />
+      {/* FEATURES */}
+      <div className="case__section">
+        <h2 className="case__section-title">Key Features</h2>
 
-          <select name="category" value={form.category} onChange={handleChange}>
-            <option value="">Select Category</option>
-            {categories.map((cat) => (
-              <option key={cat.label} value={cat.label}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
+        <ul className="case__list">
+          <li className="case__list-item">
+            📊 <strong>Interactive dashboards</strong> for visual spending
+            insights
+          </li>
+          <li className="case__list-item">
+            🌍 <strong>GeoIP-based country detection</strong> automatically adjusts
+            benchmarks based on region
+          </li>
+          <li className="case__list-item">
+            📈 <strong>Category and monthly breakdown charts</strong> using
+            Chart.js
+          </li>
+          <li className="case__list-item">
+            🧾 <strong>Transaction logging</strong> with notes, categories, and
+            filters
+          </li>
+          <li className="case__list-item">
+            🧠 <strong>Benchmark comparison engine</strong> using a configurable
+            JSON dataset
+          </li>
+        </ul>
+      </div>
 
-          <input
-            name="amount"
-            type="number"
-            placeholder="Amount"
-            value={form.amount}
-            onChange={handleChange}
-          />
+      {/* TECH STACK */}
+      <div className="case__section">
+        <h2 className="case__section-title">Tech Stack</h2>
 
-          <button className="sbp-btn" onClick={addExpense}>
-            Add +
-          </button>
+        <div className="case__tags">
+          <span className="case__tag">React</span>
+          <span className="case__tag">Vite</span>
+          <span className="case__tag">Express</span>
+          <span className="case__tag">MongoDB</span>
+          <span className="case__tag">Chart.js</span>
+          <span className="case__tag">GeoIP API</span>
+          <span className="case__tag">REST APIs</span>
         </div>
       </div>
 
-      {/* Chart Section */}
-      <div className="sbp-card" style={fadeInUp}>
-        <h2 className="sbp-section-title">Visualization</h2>
-        <ExpenseChart expenses={expenses} />
-      </div>
+      {/* CHALLENGES */}
+      <div className="case__section">
+        <h2 className="case__section-title">Challenges & Solutions</h2>
 
-      {/* Comparison Section */}
-      <div className="sbp-card" style={fadeInUp}>
-        <h2 className="sbp-section-title">Benchmark Comparison</h2>
-
-        {benchmarkData.USA && (
-          <div className="benchmark-grid">
-            {Object.entries(benchmarkData.USA).map(([cat, avg]) => {
-              const userSpent = expenses
-                .filter((e) => e.category === cat)
-                .reduce((acc, e) => acc + e.amount, 0);
-
-              return (
-                <div className="benchmark-box" key={cat}>
-                  <h3>{cat}</h3>
-                  <p>You: ${userSpent}</p>
-                  <p>USA Avg: ${avg}</p>
-
-                  {userSpent > avg ? (
-                    <span className="bad">Above Average ↑</span>
-                  ) : (
-                    <span className="good">Below Average ↓</span>
-                  )}
-                </div>
-              );
-            })}
+        <div className="case__grid">
+          <div className="case__card">
+            <h3 className="case__card-title">
+              Challenge: Clear Financial Visualization
+            </h3>
+            <p className="case__card-text">
+              Budget apps can easily overwhelm users with too much data.
+            </p>
+            <p className="case__card-text">
+              <strong>Solution:</strong> I designed a card-based layout with
+              prioritized sections, simplified color coding, and minimalist
+              charts to guide the user’s attention.
+            </p>
           </div>
-        )}
+
+          <div className="case__card">
+            <h3 className="case__card-title">
+              Challenge: International Benchmarking
+            </h3>
+            <p className="case__card-text">
+              Different countries follow different spending patterns, so a
+              global benchmark is not accurate.
+            </p>
+            <p className="case__card-text">
+              <strong>Solution:</strong> The app performs GeoIP lookup to detect
+              the user’s location, loads a matching benchmark JSON file, and
+              adjusts its comparisons accordingly.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* GALLERY */}
+      <div className="case__section">
+        <h2 className="case__section-title">Gallery</h2>
+
+        <div className="case__gallery">
+          {images.map((img) => (
+            <img
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              className="case__img case__img--clickable"
+              onClick={() => setLightboxSrc(img.src)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* LIGHTBOX */}
+      <Lightbox
+        src={lightboxSrc}
+        alt="Smart Budget Planner Expanded View"
+        onClose={() => setLightboxSrc(null)}
+      />
+
+      {/* LINKS */}
+      <div className="case__section case__section--center">
+        <a
+          href="https://github.com/GTavarez/SmartBudgetPlanner"
+          className="case__btn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View GitHub →
+        </a>
+        <a
+          href="#"
+          className="case__btn case__btn--outline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View Live Demo →
+        </a>
+      </div>
+    </section>
   );
 }
-
-export default SmartBudgetPlanner;

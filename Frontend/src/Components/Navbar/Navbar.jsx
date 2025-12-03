@@ -1,52 +1,33 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const navItems = [
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+export default function Navbar() {
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <nav className="navbar">
-      <div className="nav-container">
-        
-        {/* LOGO / NAME */}
-        <Link to="/" className="nav-logo" onClick={closeMenu}>
-          Gisell Tavarez
-        </Link>
+    <header className="navbar">
+      <nav className="navbar__container">
+        <div className="navbar__logo">GT</div>
 
-        {/* HAMBURGER ICON (mobile) */}
-        <button className="hamburger" onClick={toggleMenu}>
-          <span className={isOpen ? "bar open" : "bar"}></span>
-          <span className={isOpen ? "bar open" : "bar"}></span>
-          <span className={isOpen ? "bar open" : "bar"}></span>
-        </button>
-
-        {/* NAV LINKS */}
-        <div className={`nav-links ${isOpen ? "open" : ""}`}>
-          <NavLink to="/" className="nav-item" onClick={closeMenu}>
-            Home
-          </NavLink>
-
-          <NavLink to="/huskieshub" className="nav-item" onClick={closeMenu}>
-            HuskiesHub
-          </NavLink>
-
-          <NavLink
-            to="/smart-budget-planner"
-            className="nav-item"
-            onClick={closeMenu}
-          >
-            Smart Budget Planner
-          </NavLink>
-
-          <NavLink to="/resume" className="nav-item" onClick={closeMenu}>
-            Resume
-          </NavLink>
-        </div>
-      </div>
-    </nav>
+        <ul className="navbar__menu">
+          {navItems.map((item) => (
+            <li key={item.id} className="navbar__item">
+              <button className="navbar__link" onClick={() => scrollTo(item.id)}>
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
   );
 }

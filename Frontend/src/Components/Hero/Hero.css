@@ -1,48 +1,76 @@
+@import "../../theme.css";
+
 .hero {
-  width: 100%;
-  height: 500px;
-  background: linear-gradient(135deg, #2b2d77, #6a5acd, #b49bff);
-  background-size: 200% 200%;
-  animation: gradientShift 12s ease infinite;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  color: white;
-  border-radius: 10px;
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  background: radial-gradient(circle at top, #111827, #050816 65%, #000);
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
+.hero__content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.hero-title {
-  font-size: 3.5rem;
-  font-weight: 800;
+.hero__tag {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
 }
 
-.hero-subtitle {
+.hero__title {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-family: var(--font-head);
+}
+
+.hero__title--highlight {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero__subtitle {
+  max-width: 640px;
   margin-top: 1rem;
-  font-size: 1.2rem;
-  max-width: 550px;
-  opacity: 0.9;
+  font-size: 1rem;
+  color: var(--text-muted);
 }
 
-.hero-button {
-  margin-top: 2rem;
-  padding: 0.8rem 1.8rem;
-  background: #ffffff;
-  color: #1d1d4f;
-  border-radius: 8px;
+.hero__actions {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.hero__btn {
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: 0.3s;
   font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s ease;
 }
 
-.hero-button:hover {
-  background: #ddd9ff;
-  transform: translateY(-3px);
+.hero__btn--primary {
+  background: var(--gradient-accent);
+  color: #0b1120;
+  border: none;
+}
+
+.hero__btn--primary:hover {
+  opacity: 0.85;
+}
+
+.hero__btn--outline {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.hero__btn--outline:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }

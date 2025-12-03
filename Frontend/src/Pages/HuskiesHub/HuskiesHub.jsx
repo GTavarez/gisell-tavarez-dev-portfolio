@@ -1,173 +1,136 @@
-import React from "react";
 import "./HuskiesHub.css";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../utils/motion";
+import { useState } from "react";
+import Lightbox from "../../Components/Lightbox/Lightbox"; // <-- updated import path
 
-import { huskiesPlayers } from "../../Data/huskiesPlayers";
-import { huskiesSchedule } from "../../Data/huskiesSchedule";
-import { huskiesClinics } from "../../Data/huskiesClinics";
-import { huskiesCommits } from "../../Data/huskiesCommits";
+export default function HuskiesHub() {
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
-function HuskiesHub() {
-  const rosterSize = huskiesPlayers.length;
-  const upcomingGames = huskiesSchedule.length;
-  const upcomingClinics = huskiesClinics.length;
+  const images = [
+    {
+      src: "/images/huskieshub/dashboard.png",
+      alt: "HuskiesHub Dashboard",
+    },
+    {
+      src: "/images/huskieshub/schedule.png",
+      alt: "Team Schedule",
+    },
+    {
+      src: "/images/huskieshub/players.png",
+      alt: "Players Page",
+    },
+    {
+      src: "/images/huskieshub/clinics.png",
+      alt: "Clinics Page",
+    },
+  ];
 
   return (
-    <div className="hh-dashboard">
-      {/* Sidebar */}
-      <aside className="hh-sidebar">
-        <h1 className="hh-logo">HuskiesHub</h1>
-        <p className="hh-tagline">Empire State Huskies Softball</p>
+    <section className="case">
+      <div className="case__header">
+        <motion.h1
+          className="case__title"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="show"
+        >
+          HuskiesHub
+        </motion.h1>
+        <p className="case__subtitle">
+          A softball platform for the Empire State Huskies: Player Profiles,
+          Schedules, Clinics, College Commits, and more.
+        </p>
+      </div>
 
-        <nav className="hh-nav">
-          <a href="#overview" className="hh-nav-link">
-            Overview
-          </a>
-          <a href="#roster" className="hh-nav-link">
-            Roster
-          </a>
-          <a href="#schedule" className="hh-nav-link">
-            Schedule
-          </a>
-          <a href="#clinics" className="hh-nav-link">
-            Clinics
-          </a>
-          <a href="#commits" className="hh-nav-link">
-            College Commits
-          </a>
-          <a href="#map" className="hh-nav-link">
-            Fields & Map
-          </a>
-        </nav>
-      </aside>
+      {/* Overview Section */}
+      <div className="case__section">
+        <h2 className="case__section-title">Overview</h2>
+        <p className="case__text">
+          HuskiesHub is a full-stack application designed to centralize team
+          communication and provide a modern digital space for players, coaches,
+          and colleges. It includes real-time scheduling, Google Calendar
+          integration, profile management, and image hosting through GridFS.
+        </p>
+      </div>
 
-      {/* Main Content */}
-      <main className="hh-main">
-        {/* Overview */}
-        <section id="overview" className="hh-section">
-          <h2 className="hh-section-title">Team Overview</h2>
+      {/* Features Section */}
+      <div className="case__section">
+        <h2 className="case__section-title">Key Features</h2>
 
-          <div className="hh-overview-grid">
-            <div className="hh-card hh-kpi">
-              <span className="hh-kpi-label">Roster Size</span>
-              <span className="hh-kpi-value">{rosterSize}</span>
-              <span className="hh-kpi-caption">Active Players</span>
-            </div>
+        <ul className="case__list">
+          <li className="case__list-item">
+            🗓️ Real-time schedule synced with Google Calendar
+          </li>
+          <li className="case__list-item">
+            🧑‍🤝‍🧑 Player profiles with images, stats, and career notes
+          </li>
+          <li className="case__list-item">
+            🗺️ Field and facility map integration with Google Maps
+          </li>
+          <li className="case__list-item">
+            📸 Image hosting using MongoDB GridFS
+          </li>
+          <li className="case__list-item">
+            🔒 Admin login with JWT authentication
+          </li>
+          <li className="case__list-item">
+            🏫 College commits & showcase pages
+          </li>
+        </ul>
+      </div>
 
-            <div className="hh-card hh-kpi">
-              <span className="hh-kpi-label">Upcoming Games</span>
-              <span className="hh-kpi-value">{upcomingGames}</span>
-              <span className="hh-kpi-caption">On the Schedule</span>
-            </div>
+      {/* Tech Stack Section */}
+      <div className="case__section">
+        <h2 className="case__section-title">Tech Stack</h2>
+        <div className="case__tags">
+          <span className="case__tag">React</span>
+          <span className="case__tag">Express</span>
+          <span className="case__tag">Node</span>
+          <span className="case__tag">MongoDB</span>
+          <span className="case__tag">GridFS</span>
+          <span className="case__tag">Google Calendar API</span>
+          <span className="case__tag">Google Maps API</span>
+        </div>
+      </div>
 
-            <div className="hh-card hh-kpi">
-              <span className="hh-kpi-label">Upcoming Clinics</span>
-              <span className="hh-kpi-value">{upcomingClinics}</span>
-              <span className="hh-kpi-caption">Development Sessions</span>
-            </div>
-          </div>
-        </section>
+      {/* Interactive Gallery Section */}
+      <div className="case__section">
+        <h2 className="case__section-title">Gallery</h2>
 
-        {/* Roster */}
-        <section id="roster" className="hh-section">
-          <h2 className="hh-section-title">Roster</h2>
+        <div className="case__gallery">
+          {images.map((img) => (
+            <img
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              className="case__img case__img--clickable"
+              onClick={() => setLightboxSrc(img.src)}
+            />
+          ))}
+        </div>
+      </div>
 
-          <div className="hh-roster-grid">
-            {huskiesPlayers.map((player) => (
-              <div className="hh-card hh-player-card" key={player.id}>
-                <div className="hh-player-avatar">
-                  <span>{player.number}</span>
-                </div>
-                <div className="hh-player-info">
-                  <h3 className="hh-player-name">{player.name}</h3>
-                  <p className="hh-player-meta">
-                    {player.position} · Class of {player.gradYear}
-                  </p>
-                  {player.commit && (
-                    <p className="hh-player-commit">
-                      🎓 Committed to <strong>{player.commit}</strong>
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* Lightbox Modal */}
+      <Lightbox
+        src={lightboxSrc}
+        alt="HuskiesHub Expanded View"
+        onClose={() => setLightboxSrc(null)}
+      />
 
-        {/* Schedule */}
-        <section id="schedule" className="hh-section">
-          <h2 className="hh-section-title">Schedule</h2>
-
-          <div className="hh-list">
-            {huskiesSchedule.map((game) => (
-              <div className="hh-card hh-list-item" key={game.id}>
-                <div>
-                  <h3 className="hh-list-title">
-                    {game.opponent} {game.type === "Tournament" && "🏆"}
-                  </h3>
-                  <p className="hh-list-meta">
-                    {game.date} · {game.time} · {game.location}
-                  </p>
-                </div>
-                <span className={`hh-pill hh-pill--${game.type.toLowerCase()}`}>
-                  {game.type}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Clinics */}
-        <section id="clinics" className="hh-section">
-          <h2 className="hh-section-title">Clinics</h2>
-
-          <div className="hh-list">
-            {huskiesClinics.map((clinic) => (
-              <div className="hh-card hh-list-item" key={clinic.id}>
-                <div>
-                  <h3 className="hh-list-title">{clinic.title}</h3>
-                  <p className="hh-list-meta">
-                    {clinic.level} · {clinic.date} · {clinic.location}
-                  </p>
-                </div>
-                <span className="hh-pill">{clinic.status}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* College Commits */}
-        <section id="commits" className="hh-section">
-          <h2 className="hh-section-title">College Commits</h2>
-
-          <div className="hh-commits-grid">
-            {huskiesCommits.map((commit) => (
-              <div className="hh-card hh-commit-card" key={commit.id}>
-                <h3 className="hh-commit-name">{commit.name}</h3>
-                <p className="hh-commit-school">{commit.school}</p>
-                <p className="hh-commit-meta">
-                  {commit.position} · Class of {commit.gradYear} ·{" "}
-                  {commit.division}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Map */}
-        <section id="map" className="hh-section">
-          <h2 className="hh-section-title">Fields & Map</h2>
-
-          <div className="hh-card hh-map-placeholder">
-            <p className="hh-map-title">Google Maps Integration</p>
-            <p className="hh-map-caption">
-              In the live app this area renders an interactive map with all game
-              and practice locations using the Google Maps API.
-            </p>
-          </div>
-        </section>
-      </main>
-    </div>
+      {/* Live Links */}
+      <div className="case__section case__section--center">
+        <a
+          href="https://github.com/GTavarez/HuskiesHub-Frontend"
+          className="case__btn"
+          target="_blank"
+        >
+          View GitHub →
+        </a>
+        <a href="#" className="case__btn case__btn--outline" target="_blank">
+          View Live Site →
+        </a>
+      </div>
+    </section>
   );
 }
-
-export default HuskiesHub;

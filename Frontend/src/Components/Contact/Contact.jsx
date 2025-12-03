@@ -1,45 +1,76 @@
 import "./Contact.css";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../utils/motion";
+import { useState } from "react";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("Submitted:", formData);
+  }
+
   return (
-    <section id="contact" className="section contact">
-      <h2 className="section__title">Contact</h2>
-      <p className="section__subtitle">
-        Open to full-stack roles, frontend-leaning roles, and projects that
-        blend healthcare and technology.
-      </p>
+    <section id="contact" className="contact">
+      <div className="contact__container">
+        <p className="contact__tagline">Let’s Connect</p>
+        <h2 className="contact__title">Contact Me</h2>
 
-      <div className="card contact__card">
-        <p className="contact__text">
-          The fastest way to reach me is by email or LinkedIn. Send a short
-          note about what you&apos;re working on, and I&apos;ll get back as
-          soon as possible.
-        </p>
+        {/* ⭐ ONLY ONE FORM HERE */}
+        <motion.form
+          onSubmit={handleSubmit}
+          className="contact__form"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <div className="contact__field">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="contact__links">
-          <a
-            href="mailto:giselltavarez58@gmail.com"
-            className="contact__btn contact__btn--primary"
-          >
-            Email Me
-          </a>
-          <a
-            href="https://www.linkedin.com/in/gisell-tavarez"
-            target="_blank"
-            rel="noreferrer"
-            className="contact__btn"
-          >
-            View LinkedIn
-          </a>
-          <a
-            href="https://github.com/GTavarez"
-            target="_blank"
-            rel="noreferrer"
-            className="contact__btn"
-          >
-            View GitHub
-          </a>
-        </div>
+          <div className="contact__field">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="contact__field">
+            <label htmlFor="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              rows="5"
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" className="contact__submit">
+            Send Message
+          </button>
+        </motion.form>
       </div>
     </section>
   );
