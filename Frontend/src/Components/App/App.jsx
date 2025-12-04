@@ -6,6 +6,7 @@ import Hero from "../Hero/Hero";
 import Skills from "../Skills/Skills";
 import Projects from "../Projects/Projects";
 import Contact from "../Contact/Contact";
+import ResumeDownload from "../../Pages/ResumeDownload/ResumeDownload";
 
 // Case Study Pages
 import HuskiesHub from "../../Pages/HuskiesHub/HuskiesHub";
@@ -34,6 +35,8 @@ function App() {
             </>
           }
         />
+        {/* 🔵 RESUME DOWNLOAD PAGE */}
+        <Route path="/resume-download" element={<ResumeDownload />} />
 
         {/* 🔵 CASE STUDIES */}
         <Route path="/huskieshub" element={<HuskiesHub />} />

@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -21,11 +22,15 @@ export default function Navbar() {
         <ul className="navbar__menu">
           {navItems.map((item) => (
             <li key={item.id} className="navbar__item">
-              <button className="navbar__link" onClick={() => scrollTo(item.id)}>
+              <button
+                className="navbar__link"
+                onClick={() => scrollTo(item.id)}
+              >
                 {item.label}
               </button>
             </li>
           ))}
+          <Link to="/resume-download">Resume</Link>
         </ul>
       </nav>
     </header>
