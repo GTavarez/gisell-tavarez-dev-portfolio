@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  downloadPortfolioResume,
-} = require("../Controllers/Resume/portfolioResume");
+const portfolioResume = require("../Controllers/Resume/portfolioResume");
 
-const { downloadATSResume } = require("../Controllers/Resume/atsResume");
+if (typeof portfolioResume.generatePDF !== "function") {
+  console.error("❌ portfolioResume.generatePDF is NOT a function");
+}
 
-const { downloadSimpleResume } = require("../Controllers/Resume/simpleResume");
-
-router.get("/portfolio", downloadPortfolioResume);
-router.get("/ats", downloadATSResume);
-router.get("/simple", downloadSimpleResume);
+router.get("/portfolio", (req, res) => {
+  portfolioResume.generatePDF(req, res);
+});
 
 module.exports = router;

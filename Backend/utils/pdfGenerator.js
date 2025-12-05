@@ -1,486 +1,369 @@
+// Backend/utils/pdfGenerator.js
 const PDFDocument = require("pdfkit");
 
-// -----------------------------------------------------
-// 🎨 GLOBAL STYLES
-// -----------------------------------------------------
-const COLORS = {
-  primary: "#6B4EFF",
-  textDark: "#111",
-  text: "#333",
-  subtle: "#666",
-  line: "#CCCCCC",
-};
-
-// Draws a subtle divider line
-function divider(doc, space = 12) {
-  doc.moveDown(0.3);
-  doc
-    .strokeColor(COLORS.line)
-    .lineWidth(1)
-    .moveTo(40, doc.y)
-    .lineTo(570, doc.y)
-    .stroke();
-  doc.moveDown(space / 12);
-}
-
-// Section Header (Consistent Style)
-function sectionHeader(doc, title) {
-  doc.moveDown(1);
-  doc
-    .fontSize(14)
-    .fillColor(COLORS.primary)
-    .text(title.toUpperCase(), { underline: false });
-  doc.moveDown(0.4);
-}
-
-// Job Formatting Helper
-function addJob(doc, company, role, dates, bullets = []) {
+/**
+ * Draw sidebar section heading
+ */
+function sidebarHeading(doc, text) {
   doc
     .fontSize(12)
-    .fillColor(COLORS.textDark)
-    .text(role, { continued: true })
-    .font("Helvetica-Oblique")
-    .text(` — ${company}`);
-  doc.font("Helvetica").fontSize(10).fillColor(COLORS.subtle).text(dates);
+    .fillColor("#FFFFFF")
+    .font("Helvetica-Bold")
+    .text(text.toUpperCase(), { align: "left" });
 
-  bullets.forEach((b) => {
-    doc.fontSize(10).fillColor(COLORS.text).text(`• ${b}`);
-  });
-  doc.moveDown();
+  doc.moveDown(0.3);
 }
 
-// ATS Job Formatting
-function addJobATS(doc, title, dates, bullets = []) {
-  doc.fontSize(11).fillColor(COLORS.textDark).text(title);
-  doc.fontSize(9).fillColor(COLORS.subtle).text(dates);
-  bullets.forEach((b) => doc.fontSize(9).fillColor(COLORS.text).text(`• ${b}`));
-  doc.moveDown();
+/**
+ * Draw main heading
+ */
+function mainHeading(doc, text) {
+  doc.fontSize(20).fillColor("#6B4EFF").font("Helvetica-Bold").text(text);
+
+  doc.moveDown(0.8);
 }
 
-// -----------------------------------------------------
-// 🎨 PORTFOLIO RESUME (MODERN, STYLED)
-// -----------------------------------------------------
+/**
+ * Main function that builds the Portfolio Resume
+ */
 exports.buildPortfolioResume = (res) => {
-  const doc = new PDFDocument({ margin: 40 });
-
-  // ===== HEADER =====
-  doc
-    .fontSize(28)
-    .fillColor(COLORS.primary)
-    .text("GISELL TAVAREZ", { align: "center" });
-  doc.moveDown(0.2);
-  doc
-    .fontSize(14)
-    .fillColor(COLORS.textDark)
-    .text("Full-Stack Software Engineer • Paramedic", { align: "center" });
-
-  doc
-    .fontSize(11)
-    .fillColor(COLORS.subtle)
-    .text("Elmwood Park, NJ • 347-296-7424 • Giselltavarez@gmail.com", {
-      align: "center",
-    });
-  divider(doc);
-
-  // ===== SUMMARY =====
-  sectionHeader(doc, "Summary");
-  doc
-    .fontSize(11)
-    .fillColor(COLORS.text)
-    .text(
-      `Excellent communication, organizational, and multitasking skills. Strong background in healthcare, emergency medical response, bilingual communication, and software engineering.`
-    );
-
-  divider(doc);
-
-  // ===== EXPERIENCE =====
-  sectionHeader(doc, "Professional Experience");
-
-  addJob(
-    doc,
-    "Hackensack Meridian Health – Hackensack, NJ",
-    "Paramedic",
-    "Jan 2022 – Present",
-    [
-      "Provide advanced pre-hospital and intra-hospital emergency care.",
-      "Assess patient conditions and determine critical medical interventions.",
-      "Communicate treatment needs and patient updates to hospital staff.",
-      "Stabilize and transport patients using advanced life support protocols.",
-    ]
-  );
-
-  addJob(
-    doc,
-    "Pulse Medical Transportation – Woodland Park, NJ",
-    "Emergency Medical Technician",
-    "Jun 2019 – Jan 2022",
-    [
-      "Responded to emergency calls and conducted patient assessments.",
-      "Identified critical issues through physical examinations.",
-      "Monitored conditions and communicated changes effectively.",
-      "Ensured emergency vehicles were stocked and operational.",
-    ]
-  );
-
-  addJob(
-    doc,
-    "Kearny EMS – Kearny, NJ",
-    "Emergency Medical Technician",
-    "Sep 2017 – Jan 2018",
-    [
-      "Performed emergency patient assessments.",
-      "Identified urgent medical conditions quickly.",
-      "Ensured readiness of medical equipment and ambulance units.",
-    ]
-  );
-
-  addJob(
-    doc,
-    "Aero Ambulance Services LLC – Hackensack, NJ",
-    "Emergency Medical Technician",
-    "May 2017 – Nov 2019",
-    [
-      "Conducted emergency patient assessments and revised care plans.",
-      "Observed changes in patient conditions and communicated findings.",
-      "Maintained and stocked emergency equipment.",
-    ]
-  );
-
-  addJob(
-    doc,
-    "Integrated Translation Services LLC – Union, NJ",
-    "Medical Interpreter",
-    "Jan 2017 – Aug 2017",
-    [
-      "Provided accurate English-Spanish interpretation for medical cases.",
-      "Prepared and translated documents confidentially.",
-      "Maintained quality service following ethical guidelines.",
-    ]
-  );
-
-  divider(doc);
-
-  // ===== EDUCATION =====
-  sectionHeader(doc, "Education");
-  doc
-    .fontSize(11)
-    .text("• A.S. Science — Borough Manhattan Community College (2013–2015)");
-  doc.text("• A.S. Medical Assistant — Kaplan University (2016–2018)");
-  doc.text(
-    "• Paramedic Science Program — Bergen Community College (2020–2021)"
-  );
-  doc.text("• B.S. Biochemistry — Montclair State University (2021–Present)");
-
-  divider(doc);
-
-  // ===== CERTIFICATIONS =====
-  sectionHeader(doc, "Certifications");
-  doc.fontSize(11).text("ACLS • ASLS • CEVO • PHTLS • PALS");
-  divider(doc);
-  sectionHeader(doc, "Projects");
-
-  addProject(
-    doc,
-    "Homeland Project",
-    "https://github.com/GTavarez/homeland-project",
-    "Full-stack apartment listing platform with real-estate style UI, filtering, and secure backend.",
-    "React, Node.js, Express, MongoDB, JWT",
-    [
-      "Built secure backend API with JWT authentication.",
-      "Implemented responsive UI and reusable components.",
-      "Designed MongoDB schemas for housing listings and users.",
-      "Added dynamic filters for bedrooms, prices, and location.",
-    ]
-  );
-
-  addProject(
-    doc,
-    "SE Project React",
-    "https://github.com/GTavarez/se_project_react",
-    "Responsive React front-end with modular components and integrated REST API calls.",
-    "React, Context API, Hooks, CSS Modules",
-    [
-      "Implemented login flow with validation.",
-      "Built reusable components for maintainability.",
-      "Integrated API calls with error handling.",
-    ]
-  );
-
-  addProject(
-    doc,
-    "SE Project Express",
-    "https://github.com/GTavarez/se_project_express",
-    "Backend Express API supporting authentication and CRUD operations.",
-    "Node.js, Express, MongoDB",
-    [
-      "Created RESTful routes for user and item management.",
-      "Added middleware for validation and error handling.",
-      "Wrote modular controllers for scalability.",
-    ]
-  );
-
-  addProject(
-    doc,
-    "Decluttr (Frontend)",
-    "https://github.com/RyBCreates/decluttr",
-    "Front-end UI for productivity/organization app with category and task management.",
-    "React, JavaScript",
-    [
-      "Designed intuitive UI and layout.",
-      "Integrated API calls with loading/error states.",
-      "Built reusable UI components.",
-    ]
-  );
-
-  addProject(
-    doc,
-    "Decluttr Backend",
-    "https://github.com/RyBCreates/decluttr-backend",
-    "Node.js API powering task and category logic for Decluttr app.",
-    "Node.js, Express, MongoDB",
-    [
-      "Created CRUD endpoints for items and categories.",
-      "Added validation and security middleware.",
-      "Designed scalable server architecture.",
-    ]
-  );
+  const doc = new PDFDocument({
+    margin: 0,
+    size: "LETTER",
+  });
 
   doc.pipe(res);
-  doc.end();
-};
 
-// -----------------------------------------------------
-// ⚙️ ATS RESUME (Optimized for Applicant Tracking Systems)
-// -----------------------------------------------------
-exports.buildATSResume = (res) => {
-  const doc = new PDFDocument({ margin: 40 });
+  // --- SIDEBAR ---
+  const sidebarWidth = 170;
+  doc.rect(0, 0, sidebarWidth, 792).fill("#6B4EFF");
 
-  doc.fontSize(22).fillColor(COLORS.textDark).text("GISELL TAVAREZ");
+  doc.fillColor("#FFF").font("Helvetica");
+
+  doc.x = 20;
+  doc.y = 40;
+
+  // Name in sidebar
+  doc.fontSize(22).font("Helvetica-Bold").text("Gisell Tavarez");
+  doc.moveDown(0.5);
+
+  doc
+    .fontSize(11)
+    .font("Helvetica")
+    .text("Full-Stack Software Engineer", { width: sidebarWidth - 40 });
+  doc.moveDown(1.2);
+
+  // --- SIDEBAR: SKILLS ---
+  sidebarHeading(doc, "Skills");
   doc
     .fontSize(10)
-    .fillColor(COLORS.text)
-    .text("Elmwood Park, NJ | 347-296-7424 | Giselltavarez@gmail.com");
-  divider(doc);
-
-  sectionHeader(doc, "Summary");
-  doc
-    .fontSize(10)
-    .fillColor(COLORS.text)
+    .fillColor("#FFFFFF")
     .text(
-      "Paramedic and Software Engineer with proven experience in emergency medical response, patient assessment, critical care, bilingual communication, multitasking, and technical problem solving."
+      "JavaScript (ES6+)\nReact • Node.js • Express\nMongoDB • REST APIs\nGit & GitHub\nResponsive Design\nPDFKit\nCloud Run"
     );
-
-  divider(doc);
-
-  sectionHeader(doc, "Skills");
-  doc.fontSize(10).text(
-    `Emergency Medical Response, BLS, ACLS, PALS, Patient Assessment,
-Medical Documentation, Critical Care Communication, Microsoft Office,
-React, Node.js, MongoDB, REST APIs`
-  );
-  divider(doc);
-
-  sectionHeader(doc, "Experience");
-
-  addJobATS(doc, "Paramedic — Hackensack Meridian Health", "2022 – Present", [
-    "Provide advanced life support (ALS) and emergency treatment.",
-    "Perform rapid assessments and document patient conditions.",
-    "Coordinate care and communication with hospital teams.",
-  ]);
-
-  addJobATS(
-    doc,
-    "Emergency Medical Technician — Pulse Medical Transportation",
-    "2019 – 2022",
-    [
-      "Responded to emergency calls and provided basic life support.",
-      "Conducted patient assessments and documented findings.",
-      "Maintained readiness of medical equipment and vehicles.",
-    ]
-  );
-
-  addJobATS(doc, "EMT — Aero Ambulance Services & Kearny EMS", "2017 – 2019", [
-    "Assessed and transported patients safely.",
-    "Observed and communicated changes in patient conditions.",
-    "Prepared emergency units and equipment for deployment.",
-  ]);
-
-  divider(doc);
-
-  sectionHeader(doc, "Education");
-  doc.fontSize(10).text("A.S. Science — Borough Manhattan Community College");
-  doc.text("A.S. Medical Assistant — Kaplan University");
-  doc.text("Paramedic Science — Bergen Community College");
-  doc.text("B.S. Biochemistry — Montclair State University");
-
-  divider(doc);
-
-  sectionHeader(doc, "Certifications");
-  doc.fontSize(10).text("ACLS, ASLS, CEVO, PHTLS, PALS");
-  //---------------------------------------------
-  // PROJECTS SECTION (ATS Resume)
-  //---------------------------------------------
-  doc.addPage();
-  doc.fontSize(18).text("Projects");
-  doc.moveDown(0.7);
-
-  // Helper for ATS format
-  function atsProject(title, link, stack, bullets) {
-    doc.fontSize(14).text(title);
-    doc.fontSize(10).text(link);
-    doc.fontSize(11).text(`Tech: ${stack}`);
-    bullets.forEach((b) => doc.fontSize(11).text(`• ${b}`));
-    doc.moveDown(0.7);
-  }
-
-  // ---------------- PROJECTS -----------------
-
-  atsProject(
-    "Homeland Project",
-    "https://github.com/GTavarez/homeland-project",
-    "React, Node.js, Express, MongoDB, JWT, REST API",
-    [
-      "Built full-stack apartment listing platform with authentication.",
-      "Developed Express REST API with CRUD operations.",
-      "Integrated MongoDB schemas and optimized query performance.",
-      "Designed responsive UI in React with reusable components.",
-    ]
-  );
-
-  atsProject(
-    "se_project_react",
-    "https://github.com/GTavarez/se_project_react",
-    "React, REST API, JSX, CSS Modules",
-    [
-      "Developed reusable React components and modular pages.",
-      "Implemented API calls with async request handling.",
-      "Improved UI/UX with modern layout and clean styling.",
-    ]
-  );
-
-  atsProject(
-    "se_project_express",
-    "https://github.com/GTavarez/se_project_express",
-    "Node.js, Express, MongoDB, API Design",
-    [
-      "Engineered backend API with controllers and routes.",
-      "Implemented schema validation and error handling.",
-      "Designed secure data storage using MongoDB models.",
-    ]
-  );
-
-  atsProject(
-    "Decluttr Frontend",
-    "https://github.com/RyBCreates/decluttr",
-    "React, Zustand, REST API",
-    [
-      "Implemented global state management with Zustand.",
-      "Integrated backend API for data-driven UI.",
-      "Created responsive UI components and workflows.",
-    ]
-  );
-
-  atsProject(
-    "Decluttr Backend",
-    "https://github.com/RyBCreates/decluttr-backend",
-    "Node.js, Express, MongoDB",
-    [
-      "Developed REST API powering task and user operations.",
-      "Created secure schema models with validation.",
-      "Implemented structured controllers with async safety.",
-    ]
-  );
-
-  doc.pipe(res);
-  doc.end();
-};
-
-// -----------------------------------------------------
-// 🟦 SIMPLE RESUME (Clean + Readable)
-// -----------------------------------------------------
-exports.buildSimpleResume = (res) => {
-  const doc = new PDFDocument({ margin: 40 });
-
-  doc.fontSize(24).text("GISELL TAVAREZ");
-  doc
-    .fontSize(11)
-    .text("Elmwood Park, NJ • 347-296-7424 • Giselltavarez@gmail.com");
-  divider(doc);
-
-  sectionHeader(doc, "Summary");
-  doc
-    .fontSize(11)
-    .text(
-      "Dedicated Paramedic and Software Engineer with strong communication skills and emergency medical training."
-    );
-
-  divider(doc);
-
-  sectionHeader(doc, "Experience");
-  doc
-    .fontSize(11)
-    .text("• Paramedic — Hackensack Meridian Health (2022–Present)");
-  doc.text("• EMT — Pulse Medical Transportation (2019–2022)");
-  doc.text("• EMT — Aero Ambulance Services (2017–2019)");
-  doc.text("• EMT — Kearny EMS (2017–2018)");
-  doc.text("• Interpreter — Integrated Translation Services (2017)");
-  divider(doc);
-
-  sectionHeader(doc, "Education");
-  doc.text("• A.S. Science — Borough Manhattan Community College");
-  doc.text("• A.S. Medical Assistant — Kaplan University");
-  doc.text("• Paramedic Science — Bergen Community College");
-  doc.text("• B.S. Biochemistry — Montclair State University");
-  divider(doc);
-
-  sectionHeader(doc, "Certifications");
-  doc.text("ACLS • ASLS • CEVO • PHTLS • PALS");
-  //---------------------------------------------
-  // PROJECTS SECTION (Simple Resume)
-  //---------------------------------------------
-  doc.addPage();
-  doc.fontSize(20).text("Projects");
   doc.moveDown(1);
 
-  function project(title, stack, bullets) {
-    doc.fontSize(14).text(title);
-    doc.fontSize(11).text(`Tech: ${stack}`);
-    bullets.forEach((b) => doc.fontSize(11).text(`• ${b}`));
-    doc.moveDown(0.8);
-  }
+  // --- SIDEBAR: Tools ---
+  sidebarHeading(doc, "Tools");
+  doc
+    .fontSize(10)
+    .fillColor("#FFFFFF")
+    .text("VS Code\nPostman\nMongoDB Compass\nFigma");
+  doc.moveDown(1);
 
-  // ---------------- PROJECTS -----------------
+  // --- SIDEBAR: Contact ---
+  sidebarHeading(doc, "Contact");
+  doc.fontSize(10).fillColor("#FFF").text("New York, NY");
+  doc.text("Email: tavarezgisell@gmail.com");
+  doc.text("GitHub: github.com/GTavarez");
+  doc.moveDown(1);
 
-  project("Homeland Project", "React, Node.js, Express, MongoDB", [
-    "Built full-stack listing platform with filters and login.",
-    "Created backend API and data models.",
-    "Designed responsive React UI.",
-  ]);
+  // --- SIDEBAR: Links ---
+  sidebarHeading(doc, "Links");
+  doc
+    .fontSize(10)
+    .fillColor("#FFF")
+    .text("Portfolio: https://your-portfolio.com");
+  doc.moveDown(2);
 
-  project("se_project_react", "React, REST API", [
-    "Developed modular components and UI screens.",
-    "Integrated API and state management.",
-    "Improved responsiveness and UX.",
-  ]);
+  // RESET for main content
+  doc.x = sidebarWidth + 40;
+  doc.y = 40;
+  doc.fillColor("#000");
 
-  project("se_project_express", "Node.js, Express, MongoDB", [
-    "Engineered backend CRUD API.",
-    "Set up routing, controllers, and validation.",
-    "Built MongoDB models for structured data.",
-  ]);
+  // --- MAIN: Transition Section ---
+  mainHeading(doc, "Paramedic → Software Engineer Transition");
 
-  project("Decluttr Frontend", "React, Zustand", [
-    "Implemented global state for tasks.",
-    "Integrated backend API calls.",
-    "Improved UI flows.",
-  ]);
+  doc
+    .fontSize(11)
+    .fillColor("#333")
+    .text(
+      "With seven years as a paramedic, I bring rapid problem-solving, calm execution, and precise decision-making into software engineering. " +
+        "Emergency medicine taught me to assess, diagnose, and solve complex problems quickly — a mindset that directly supports API development, debugging, and clean architecture."
+    );
+  doc.moveDown(1);
 
-  project("Decluttr Backend", "Node.js, Express", [
-    "Built task + user API.",
-    "Implemented secure schemas.",
-    "Added error-safe routes.",
-  ]);
+  doc
+    .fontSize(11)
+    .text(
+      "My engineering approach mirrors emergency care: assess, stabilize, solve, and communicate. " +
+        "This mindset makes me effective in API integrations, system design, and collaborative development."
+    );
+  doc.moveDown(1.5);
 
-  doc.pipe(res);
+  // --- MAIN: Software Engineering Section ---
+  mainHeading(doc, "Software Engineering");
+
+  doc.fontSize(12).fillColor("#6B4EFF").text("Technical Skills");
+  doc
+    .fontSize(11)
+    .fillColor("#333")
+    .text(
+      "JavaScript (ES6+), React, Node.js, Express, MongoDB, Git, REST APIs, JWT, Axios, Zustand, CSS Modules"
+    );
+  doc.moveDown(1);
+
+  doc.fontSize(12).fillColor("#6B4EFF").text("Frontend Engineering");
+  doc
+    .fontSize(11)
+    .fillColor("#333")
+    .text(
+      "Experienced in building responsive UIs, modular React components, state management, and modern UX patterns."
+    );
+  doc.moveDown(1);
+
+  doc.fontSize(12).fillColor("#6B4EFF").text("Backend Engineering");
+  doc
+    .fontSize(11)
+    .fillColor("#333")
+    .text(
+      "Skilled in REST API architecture, controller-service structure, secure authentication, MongoDB schemas, and validation."
+    );
+  doc.moveDown(1);
+
+  // --- MAIN: Projects ---
+  mainHeading(doc, "Featured Projects");
+
+  const projects = [
+    {
+      title: "Homeland Project",
+      link: "github.com/GTavarez/homeland-project",
+      desc: "Full-stack app with modern UI, secure routing, and REST architecture.",
+    },
+    {
+      title: "WTWR Frontend",
+      link: "github.com/GTavarez/se_project_react",
+      desc: "React app with user profiles, weather-based recommendations, and full UI system.",
+    },
+    {
+      title: "WTWR Backend",
+      link: "github.com/GTavarez/se_project_express",
+      desc: "Express backend with authentication, validation, and routing.",
+    },
+    {
+      title: "Decluttr Full-Stack",
+      link: "github.com/RyBCreates/decluttr",
+      desc: "MERN app for item organization with reusable components.",
+    },
+    {
+      title: "Decluttr Backend",
+      link: "github.com/RyBCreates/decluttr-backend",
+      desc: "Express API with CRUD, authentication, and clean data modeling.",
+    },
+  ];
+
+  projects.forEach((p) => {
+    doc.fontSize(13).fillColor("#333").text(p.title);
+    doc.fontSize(10).fillColor("#6B4EFF").text(p.link);
+    doc.moveDown(0.3);
+    doc.fontSize(11).fillColor("#222").text(p.desc);
+    doc.moveDown(1);
+  });
+
+  // --- MAIN: Paramedic Experience ---
+  doc.addPage();
+  doc.x = sidebarWidth + 40;
+  doc.y = 40;
+
+  mainHeading(doc, "Paramedic Experience");
+
+  doc
+    .fontSize(11)
+    .fillColor("#000")
+    .list([
+      "Delivered emergency medical care in time-critical environments.",
+      "Performed rapid assessment, diagnosis, and stabilization.",
+      "Collaborated with multi-disciplinary teams.",
+      "Documented complex medical events with precision.",
+      "Applied strong decision-making, empathy, leadership.",
+    ]);
+  doc.moveDown(1.5);
+
+  // EDUCATION
+  mainHeading(doc, "Education");
+
+  doc
+    .fontSize(12)
+    .fillColor("#333")
+    .text("TripleTen Software Engineering Program — 2024");
+  doc
+    .fontSize(10)
+    .text("Full-stack program focused on modern JavaScript technologies.");
+  doc.moveDown(1);
+
+  doc
+    .fontSize(12)
+    .fillColor("#333")
+    .text("NYC EMS Academy — Paramedic Certification");
+
+  // CERTIFICATIONS
+  mainHeading(doc, "Certifications");
+  doc
+    .fontSize(11)
+    .list([
+      "State-Certified Paramedic",
+      "CPR / AED / BLS",
+      "ITLS Trauma Life Support",
+      "Emergency Vehicle Operations",
+    ]);
+
   doc.end();
+  /**
+   * Build ATS-Optimized Resume (no colors, no columns)
+   */
+  exports.buildATSResume = (res) => {
+    const doc = new PDFDocument({
+      margin: 50,
+      size: "LETTER",
+    });
+
+    doc.pipe(res);
+
+    // ---- NAME HEADER ----
+    doc
+      .font("Helvetica-Bold")
+      .fontSize(24)
+      .fillColor("#000")
+      .text("Gisell Tavarez");
+
+    doc
+      .font("Helvetica")
+      .fontSize(12)
+      .text("Full-Stack Software Engineer | Paramedic", { lineGap: 2 });
+
+    doc
+      .fontSize(10)
+      .text("New York, NY • tavarezgisell@gmail.com • github.com/GTavarez", {
+        lineGap: 2,
+      });
+
+    doc.moveDown(1.2);
+
+    // ---- SUMMARY ----
+    doc.font("Helvetica-Bold").fontSize(14).text("Summary");
+    doc.moveDown(0.4);
+
+    doc
+      .font("Helvetica")
+      .fontSize(11)
+      .text(
+        "Full-stack software engineer with a paramedic background, specializing in JavaScript, React, Node.js, Express, and MongoDB. Skilled in building production-ready APIs, UI components, and full-stack applications. Known for calm problem-solving, rapid learning, and disciplined execution."
+      );
+
+    doc.moveDown(1.2);
+
+    // ---- SKILLS ----
+    doc.font("Helvetica-Bold").fontSize(14).text("Technical Skills");
+    doc.moveDown(0.4);
+
+    doc
+      .font("Helvetica")
+      .fontSize(11)
+      .text(
+        "Languages: JavaScript (ES6+)\n" +
+          "Frontend: React, Zustand, Axios, CSS Modules, Responsive UI\n" +
+          "Backend: Node.js, Express, REST APIs, JWT Auth, MongoDB\n" +
+          "Tools: Git, GitHub, Postman, Cloud Run, PDFKit, Figma"
+      );
+
+    doc.moveDown(1.2);
+
+    // ---- SOFTWARE PROJECTS ----
+    doc.font("Helvetica-Bold").fontSize(14).text("Software Projects");
+    doc.moveDown(0.4);
+
+    const projects = [
+      {
+        title: "Homeland Project",
+        link: "github.com/GTavarez/homeland-project",
+        desc: "Full-stack MERN application featuring modern UI, secure routing, and RESTful architecture.",
+      },
+      {
+        title: "WTWR — React Application",
+        link: "github.com/GTavarez/se_project_react",
+        desc: "Built dynamic UI components, user profiles, and weather-based recommendation features.",
+      },
+      {
+        title: "WTWR Backend (Express)",
+        link: "github.com/GTavarez/se_project_express",
+        desc: "Developed authentication, routing, validation, and database modeling.",
+      },
+      {
+        title: "Decluttr (Frontend)",
+        link: "github.com/RyBCreates/decluttr",
+        desc: "Collaborative MERN app with reusable components and global state management.",
+      },
+      {
+        title: "Decluttr Backend",
+        link: "github.com/RyBCreates/decluttr-backend",
+        desc: "CRUD routes, controllers, authentication, and clean API structure.",
+      },
+    ];
+
+    projects.forEach((p) => {
+      doc.font("Helvetica-Bold").fontSize(12).text(p.title);
+      doc.font("Helvetica").fontSize(10).text(p.link);
+      doc.moveDown(0.3);
+      doc.font("Helvetica").fontSize(11).text(p.desc);
+      doc.moveDown(0.9);
+    });
+
+    // ---- WORK EXPERIENCE ----
+    doc.font("Helvetica-Bold").fontSize(14).text("Paramedic Experience");
+    doc.moveDown(0.4);
+
+    doc.font("Helvetica").fontSize(12).text("Paramedic — 2018–Present");
+    doc.moveDown(0.3);
+
+    doc
+      .font("Helvetica")
+      .fontSize(11)
+      .list([
+        "Delivered emergency medical care in high-pressure environments.",
+        "Performed rapid assessment, diagnosis, and stabilization.",
+        "Collaborated with multi-disciplinary teams.",
+        "Documented complex medical events with accuracy and clarity.",
+        "Strong communication, problem-solving, and leadership skills.",
+      ]);
+
+    doc.moveDown(1.2);
+
+    // ---- EDUCATION ----
+    doc.font("Helvetica-Bold").fontSize(14).text("Education");
+    doc.moveDown(0.4);
+
+    doc
+      .font("Helvetica")
+      .fontSize(12)
+      .text("TripleTen Software Engineering Program (2024)");
+    doc.fontSize(11).text("Full-stack JavaScript development specialization.");
+    doc.moveDown(0.6);
+
+    doc
+      .font("Helvetica")
+      .fontSize(12)
+      .text("NYC EMS Academy — Paramedic Certification");
+
+    doc.end();
+  };
 };
