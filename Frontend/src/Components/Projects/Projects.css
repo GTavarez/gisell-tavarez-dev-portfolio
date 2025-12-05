@@ -1,5 +1,94 @@
-.projects__grid {
+.projects-section {
+  padding: 5rem 2rem;
+  background: white;
+}
+
+.projects-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 3rem;
+}
+
+.projects-grid {
+  max-width: 1200px;
+  margin: auto;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.project-card {
+  background: #fafaff;
+  border: 1px solid #e5ddff;
+  padding: 2rem;
+  border-radius: 16px;
+  transition: 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 8px 25px rgba(107, 78, 255, 0.18);
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #6b4eff;
+  margin-bottom: 0.7rem;
+}
+
+.proj-desc {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.3rem;
+}
+
+.tag {
+  background: #ede8ff;
+  color: #6b4eff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.proj-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.case-btn {
+  background: #6b4eff;
+  color: white;
+}
+
+.case-btn:hover {
+  background: #5a3ee8;
+}
+
+.git-btn {
+  background: white;
+  border: 1px solid #6b4eff;
+  color: #6b4eff;
+}
+
+.git-btn:hover {
+  background: #f3eefe;
 }

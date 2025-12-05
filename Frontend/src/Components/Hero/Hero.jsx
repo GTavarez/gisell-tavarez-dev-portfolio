@@ -1,44 +1,39 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero() {
   return (
-    <section id="hero" className="hero">
-      <div className="hero__content">
-        <p className="hero__tag">Portfolio 2025</p>
-        <h1 className="hero__title">
-          Hi, I’m <span className="hero__title--highlight">Gisell</span>.
-          <br />I build thoughtful, real-world applications.
+    <div className="hero-container">
+      <motion.div
+        className="hero-content"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="hero-title">
+          Hi, I’m <span className="accent">Gisell Tavarez</span>
         </h1>
 
-        <p className="hero__subtitle">
-          Full-stack developer focused on clear UX, modern engineering, and
-          real-world impact.
+        <h2 className="hero-subtitle">Paramedic ➜ Software Engineer</h2>
+
+        <p className="hero-text">
+          I build clean, modern, user-focused applications with React, Node,
+          Express, and MongoDB.  
+          My background as a paramedic gives me a unique problem-solving
+          mindset—calm, precise, and always mission-focused.
         </p>
 
-        <div className="hero__actions">
-          <button
-            className="hero__btn hero__btn--primary"
-            onClick={() =>
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
+        <div className="hero-buttons">
+          <Link to="/resume-download" className="hero-btn primary">
+            Download Resume
+          </Link>
+          <Link to="/projects" className="hero-btn secondary">
             View Projects
-          </button>
-
-          <button
-            className="hero__btn hero__btn--outline"
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Contact Me
-          </button>
+          </Link>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </div>
   );
 }

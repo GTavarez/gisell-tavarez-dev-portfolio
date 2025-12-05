@@ -1,76 +1,74 @@
-
-
-.hero {
-  padding-top: 7rem;
-  padding-bottom: 5rem;
-  background: radial-gradient(circle at top, #111827, #050816 65%, #000);
+.hero-container {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f6f8ff 0%, #eef2ff 40%, #ffffff 100%);
 }
 
-.hero__content {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+.hero-content {
+  max-width: 800px;
+  text-align: center;
 }
 
-.hero__tag {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.1;
 }
 
-.hero__title {
-  font-size: 2.8rem;
-  line-height: 1.2;
-  font-family: var(--font-head);
+.accent {
+  color: #6b4eff;
 }
 
-.hero__title--highlight {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero__subtitle {
-  max-width: 640px;
+.hero-subtitle {
+  font-size: 1.6rem;
   margin-top: 1rem;
-  font-size: 1rem;
-  color: var(--text-muted);
+  color: #444;
 }
 
-.hero__actions {
+.hero-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
   margin-top: 2.4rem;
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
-.hero__btn {
-  padding: 0.85rem 1.8rem;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: 0.3s;
+.hero-btn {
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 10px;
   font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s ease;
 }
 
-.hero__btn--primary {
-  background: var(--gradient-accent);
-  color: #0b1120;
-  border: none;
+.hero-btn.primary {
+  background: #6b4eff;
+  color: white;
 }
 
-.hero__btn--primary:hover {
+.hero-btn.primary:hover {
   opacity: 0.85;
 }
 
-.hero__btn--outline {
+.hero-btn.secondary {
   background: transparent;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  color: #6b4eff;
+  border: 2px solid #6b4eff;
 }
 
-.hero__btn--outline:hover {
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
+.hero-btn.secondary:hover {
+  background: #6b4eff;
+  color: white;
 }

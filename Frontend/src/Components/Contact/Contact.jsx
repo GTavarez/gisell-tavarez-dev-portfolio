@@ -1,7 +1,6 @@
-import "./Contact.css";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp } from "../../utils/motion";
-import { useState } from "react";
+import "./Contact.css";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,68 +9,89 @@ export default function Contact() {
     message: "",
   });
 
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  const [status, setStatus] = useState("");
 
-  function handleSubmit(e) {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted:", formData);
-  }
+    setStatus("sending");
+
+    try {
+      const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  };
 
   return (
-    <section id="contact" className="contact">
-      <div className="contact__container">
-        <p className="contact__tagline">Let’s Connect</p>
-        <h2 className="contact__title">Contact Me</h2>
+    <section className="contact-section" id="contact">
+      <motion.h2
+        className="contact-title"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Contact Me
+      </motion.h2>
 
-        {/* ⭐ ONLY ONE FORM HERE */}
-        <motion.form
-          onSubmit={handleSubmit}
-          className="contact__form"
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <div className="contact__field">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onChange={handleChange}
-              required
-            />
-          </div>
+      <motion.form
+        className="contact-form"
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+        />
 
-          <div className="contact__field">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+        />
 
-          <div className="contact__field">
-            <label htmlFor="message">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              rows="5"
-              onChange={handleChange}
-              required
-            ></textarea>
-          </div>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          required
+          value={formData.message}
+          onChange={handleChange}
+        ></textarea>
 
-          <button type="submit" className="contact__submit">
-            Send Message
-          </button>
-        </motion.form>
-      </div>
+        <button type="submit" disabled={status === "sending"}>
+          {status === "sending" ? "Sending..." : "Send Message"}
+        </button>
+
+        {status === "success" && (
+          <p className="success">Message sent successfully ✔</p>
+        )}
+
+        {status === "error" && (
+          <p className="error">Oops! Something went wrong ❌</p>
+        )}
+      </motion.form>
     </section>
   );
 }

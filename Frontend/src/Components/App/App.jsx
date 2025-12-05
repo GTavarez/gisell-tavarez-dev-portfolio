@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Home Page Sections (called directly inside App)
 import Hero from "../Hero/Hero";
-/* import About from "../About/About"; */
+import About from "../About/About";
 import Skills from "../Skills/Skills";
 import Projects from "../Projects/Projects";
 import Contact from "../Contact/Contact";
@@ -28,7 +28,7 @@ function App() {
           element={
             <>
               <Hero />
-              {/* <About /> */}
+              <About />
               <Skills />
               <Projects />
               <Contact />
