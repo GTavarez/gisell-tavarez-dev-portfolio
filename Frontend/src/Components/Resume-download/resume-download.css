@@ -1,66 +1,80 @@
 .resume-page {
-  width: 100%;
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  background: #f8f9ff;
-  text-align: center;
-}
-
-.resume-title {
-  font-size: 3rem;
-  color: #111;
-  margin-bottom: 0.5rem;
-}
-
-.resume-subtitle {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 3rem;
-}
-
-.resume-card-container {
+  padding: 80px 20px;
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.resume-header h1 {
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, #6b4eff, #9a7bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.resume-header p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .resume-card {
-  background: #fff;
-  padding: 2rem;
-  width: 320px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .resume-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.resume-icon {
+  font-size: 3rem;
+  color: #6b4eff;
+  margin-bottom: 15px;
 }
 
 .resume-card h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .resume-card p {
-  color: #444;
-  font-size: 1rem;
-  margin-bottom: 1.4rem;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
 }
 
-.resume-btn {
-  color: #fff;
-  border: none;
-  padding: 0.9rem 1.4rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 12px;
+.download-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #6b4eff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
   font-weight: bold;
-  width: 100%;
-  transition: opacity 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.resume-btn:hover {
-  opacity: 0.85;
+.download-btn:hover {
+  background: #4d36d1;
 }

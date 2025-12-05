@@ -7,6 +7,7 @@ const navItems = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
+  { id: "resume-download", label: "Resume" },
 ];
 
 export default function Navbar() {

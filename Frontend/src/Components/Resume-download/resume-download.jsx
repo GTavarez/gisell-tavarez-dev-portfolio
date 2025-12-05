@@ -1,53 +1,51 @@
 import React from "react";
 import "./ResumeDownload.css";
+import { FaFilePdf } from "react-icons/fa";
 
 function ResumeDownload() {
-  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+  const backend = "http://localhost:8080"; // update when deploying
 
   const resumes = [
     {
-      title: "Portfolio Resume (Modern)",
+      title: "Portfolio Resume",
+      desc: "Designed for recruiters & hiring managers. Beautiful, modern & storytelling.",
       endpoint: "/api/resume/portfolio",
-      description: "Designed for portfolio websites and tech recruiters.",
-      color: "#6B4EFF",
     },
     {
       title: "ATS Resume",
+      desc: "Optimized for Applicant Tracking Systems. Clean, keyword-rich formatting.",
       endpoint: "/api/resume/ats",
-      description: "Optimized for Applicant Tracking Systems.",
-      color: "#1E90FF",
     },
     {
       title: "Simple Resume",
+      desc: "Minimalistic resume for quick viewing or print-friendly submissions.",
       endpoint: "/api/resume/simple",
-      description: "A clean, minimalist one-page resume.",
-      color: "#00C49A",
     },
   ];
 
-  const download = (endpoint) => {
-    window.open(`${backend}${endpoint}`, "_blank");
-  };
-
   return (
     <div className="resume-page">
-      <h1 className="resume-title">Download My Resume</h1>
-      <p className="resume-subtitle">
-        Choose the version that best fits your needs.
-      </p>
+      <div className="resume-header">
+        <h1>Download My Resume</h1>
+        <p>Select the resume format that fits your application needs.</p>
+      </div>
 
-      <div className="resume-card-container">
-        {resumes.map((r, i) => (
-          <div key={i} className="resume-card">
-            <h2 style={{ color: r.color }}>{r.title}</h2>
-            <p>{r.description}</p>
-            <button
-              className="resume-btn"
-              style={{ backgroundColor: r.color }}
-              onClick={() => download(r.endpoint)}
+      <div className="resume-grid">
+        {resumes.map((item, index) => (
+          <div className="resume-card" key={index}>
+            <FaFilePdf className="resume-icon" />
+
+            <h2>{item.title}</h2>
+            <p>{item.desc}</p>
+
+            <a
+              href={`${backend}${item.endpoint}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="download-btn"
             >
               Download PDF
-            </button>
+            </a>
           </div>
         ))}
       </div>
