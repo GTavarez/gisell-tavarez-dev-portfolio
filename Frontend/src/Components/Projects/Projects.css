@@ -1,14 +1,16 @@
 .projects-section {
   padding: 5rem 2rem;
-  background: white;
+  background: var(--bg);
+  transition: background 0.3s ease;
 }
 
 .projects-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 800;
-  color: #222;
+  color: var(--text);
   margin-bottom: 3rem;
+  transition: color 0.3s ease;
 }
 
 .projects-grid {
@@ -20,11 +22,15 @@
 }
 
 .project-card {
-  background: #fafaff;
-  border: 1px solid #e5ddff;
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
   padding: 2rem;
   border-radius: 16px;
-  transition: 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .project-card:hover {
@@ -35,14 +41,16 @@
 .project-card h3 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #6b4eff;
+  color: var(--accent);
   margin-bottom: 0.7rem;
+  transition: color 0.3s ease;
 }
 
 .proj-desc {
   font-size: 0.95rem;
-  color: #444;
+  color: var(--text-muted);
   margin-bottom: 1.2rem;
+  transition: color 0.3s ease;
 }
 
 .stack-tags {
@@ -53,14 +61,18 @@
 }
 
 .tag {
-  background: #ede8ff;
-  color: #6b4eff;
+  background: var(--accent-secondary, #ede8ff);
+  color: var(--accent);
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 0.8rem;
   font-weight: 600;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
+/* BUTTONS */
 .proj-buttons {
   display: flex;
   gap: 10px;
@@ -72,10 +84,14 @@
   font-size: 0.9rem;
   border-radius: 8px;
   font-weight: 600;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
 }
 
 .case-btn {
-  background: #6b4eff;
+  background: var(--accent);
   color: white;
 }
 
@@ -84,11 +100,11 @@
 }
 
 .git-btn {
-  background: white;
-  border: 1px solid #6b4eff;
-  color: #6b4eff;
+  background: var(--card-bg);
+  border: 1px solid var(--accent);
+  color: var(--accent);
 }
 
 .git-btn:hover {
-  background: #f3eefe;
+  background: rgba(107, 78, 255, 0.1);
 }

@@ -1,11 +1,14 @@
 .hero-container {
   width: 100%;
-  min-height: 90vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #f6f8ff 0%, #eef2ff 40%, #ffffff 100%);
+  
+  /* Theme-adaptive background */
+  background: var(--hero-bg);
+  transition: background 0.3s ease;
 }
 
 .hero-content {
@@ -16,27 +19,41 @@
 .hero-title {
   font-size: 3.5rem;
   font-weight: 800;
-  color: #111;
+  color: var(--text);
   line-height: 1.1;
+  transition: color 0.3s ease;
 }
 
 .accent {
-  color: #6b4eff;
+  color: var(--accent);
+  transition: color 0.3s ease;
 }
 
 .hero-subtitle {
   font-size: 1.6rem;
   margin-top: 1rem;
-  color: #444;
+  color: var(--text-muted, #666);
+  transition: color 0.3s ease;
 }
 
 .hero-text {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--text-muted, #555);
   margin-top: 1.5rem;
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
+/* Dark mode specific tuning */
+[data-theme="dark"] .hero-subtitle {
+  color: #c7c9d3;
+}
+
+[data-theme="dark"] .hero-text {
+  color: #b3b7c3;
+}
+
+/* BUTTONS */
 .hero-buttons {
   margin-top: 2.4rem;
   display: flex;
@@ -51,24 +68,31 @@
   font-weight: 600;
   text-decoration: none;
   transition: 0.2s ease;
+  transform: translateY(0);
 }
 
+.hero-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* PRIMARY BUTTON */
 .hero-btn.primary {
-  background: #6b4eff;
-  color: white;
+  background: var(--accent);
+  color: #fff;
 }
 
 .hero-btn.primary:hover {
   opacity: 0.85;
 }
 
+/* SECONDARY BUTTON */
 .hero-btn.secondary {
   background: transparent;
-  color: #6b4eff;
-  border: 2px solid #6b4eff;
+  color: var(--accent);
+  border: 2px solid var(--accent);
 }
 
 .hero-btn.secondary:hover {
-  background: #6b4eff;
-  color: white;
+  background: var(--accent);
+  color: #fff;
 }

@@ -1,64 +1,82 @@
 .contact-section {
   padding: 5rem 2rem;
-  background: #f8f4ff;
+  background: var(--bg);
+  transition: background 0.3s ease;
 }
 
 .contact-title {
   text-align: center;
   font-size: 2.4rem;
   font-weight: 800;
-  color: #6b4eff;
+  color: var(--accent);
   margin-bottom: 3rem;
+  transition: color 0.3s ease;
 }
 
 .contact-form {
   max-width: 600px;
   margin: auto;
-  background: #ffffff;
+  background: var(--card-bg);
   padding: 2rem 2.5rem;
   border-radius: 16px;
-  border: 1px solid #e5ddff;
-  box-shadow: 0px 10px 30px rgba(107, 78, 255, 0.12);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 1px solid #d0c8ff;
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
   border-radius: 10px;
   font-size: 1rem;
   outline: none;
-  background: #fafaff;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #6b4eff;
-  box-shadow: 0 0 0 3px rgba(107, 78, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(107, 78, 255, 0.25);
 }
 
 .contact-form button {
-  background: #6b4eff;
-  color: white;
+  background: var(--accent);
+  color: #fff;
   border: none;
   padding: 0.9rem;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .contact-form button:hover {
-  background: #5a3ee8;
+  background: rgba(107, 78, 255, 0.85);
+  transform: translateY(-2px);
 }
 
 .success {
-  color: #2a9d4a;
+  color: #2ecc71;
   font-weight: bold;
 }
 

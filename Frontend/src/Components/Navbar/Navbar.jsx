@@ -1,5 +1,7 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import ThemeContext from "../../context/ThemeContext";
+import { useContext } from "react";
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -14,6 +16,7 @@ export default function Navbar() {
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <header className="navbar">
@@ -31,7 +34,12 @@ export default function Navbar() {
               </button>
             </li>
           ))}
-          <Link to="/resume-download">Resume</Link>
+          <Link to="/resume-download" className="active-link">
+            Resume
+          </Link>
+          <button onClick={toggleTheme} className="theme-toggle">
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
         </ul>
       </nav>
     </header>

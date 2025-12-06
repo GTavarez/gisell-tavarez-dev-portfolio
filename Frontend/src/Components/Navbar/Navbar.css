@@ -1,15 +1,22 @@
-
-
+/* ------------------------------
+   NAVBAR WRAPPER
+------------------------------ */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(0, 0, 0, 0.25); /* works for light + dark */
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
   z-index: 50;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
+/* ------------------------------
+   NAVBAR INNER LAYOUT
+------------------------------ */
 .navbar__container {
   max-width: 1120px;
   margin: 0 auto;
@@ -19,35 +26,70 @@
   align-items: center;
 }
 
+/* ------------------------------
+   LOGO
+------------------------------ */
 .navbar__logo {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  background: var(--accent-purple);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--accent);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-head);
   font-weight: 700;
-  color: #0a0f1f;
-  box-shadow: var(--shadow-soft);
+  color: #ffffff;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* ------------------------------
+   MENU LINKS
+------------------------------ */
 .navbar__menu {
   list-style: none;
   display: flex;
-  gap: 1.2rem;
+  gap: 1.3rem;
+  align-items: center;
 }
 
+/* Buttons that scroll to sections */
 .navbar__link {
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-muted);
-  font-family: var(--font-body);
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  transition: color 0.25s ease;
 }
 
 .navbar__link:hover {
-  color: var(--accent-cyan);
+  color: var(--accent);
+}
+
+/* Actual router link (Resume) */
+.active-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ------------------------------
+   THEME TOGGLE
+------------------------------ */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.45rem;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.2s ease,
+    color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15);
+  color: var(--accent);
 }

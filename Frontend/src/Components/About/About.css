@@ -1,9 +1,8 @@
 .about-container {
   width: 100%;
   padding: 5rem 2rem;
-  display: flex;
-  justify-content: center;
-  background: #ffffff;
+  background: var(--bg);
+  transition: background 0.3s ease;
 }
 
 .about-content {
@@ -14,14 +13,12 @@
 .about-title {
   font-size: 2.6rem;
   font-weight: 800;
-  color: #111;
-  margin-bottom: 2rem;
+  color: var(--text);
 }
 
 .about-text {
   font-size: 1.15rem;
-  color: #444;
-  margin-bottom: 1.5rem;
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
@@ -33,26 +30,22 @@
 }
 
 .about-card {
-  background: #f5f3ff;
-  border: 1px solid #e5e1ff;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   padding: 1.4rem;
   border-radius: 12px;
-  text-align: left;
   transition: 0.25s ease;
 }
 
 .about-card:hover {
-  background: #ece9ff;
+  background: var(--accent-soft);
   transform: translateY(-4px);
 }
 
 .about-card h3 {
-  margin-bottom: 0.6rem;
-  color: #6b4eff;
-  font-size: 1.2rem;
+  color: var(--accent);
 }
 
 .about-card p {
-  color: #444;
-  font-size: 0.95rem;
+  color: var(--text-muted);
 }
