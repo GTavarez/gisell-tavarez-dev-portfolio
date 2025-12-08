@@ -18,7 +18,7 @@ export default function HuskiesHub() {
     images.find((img) => img.src === lightboxSrc)?.alt || "Preview Image";
 
   return (
-    <section className="case">
+    <section className="case case--huskies">
       <div className="case__container">
         {/* HEADER */}
         <div className="case__header">
@@ -119,11 +119,19 @@ export default function HuskiesHub() {
         </motion.div>
 
         {/* LIGHTBOX */}
-        <Lightbox src={lightboxSrc} alt={getAlt()} onClose={() => setLightboxSrc(null)} />
+        <Lightbox
+          src={lightboxSrc}
+          alt={getAlt()}
+          onClose={() => setLightboxSrc(null)}
+        />
 
         {/* LINKS */}
         <div className="case__section case__section--center">
-          <a href="https://github.com/GTavarez/HuskiesHub" className="case__btn" target="_blank">
+          <a
+            href="https://github.com/GTavarez/HuskiesHub"
+            className="case__btn"
+            target="_blank"
+          >
             View GitHub →
           </a>
           <a

@@ -27,7 +27,7 @@ export default function SmartBudgetPlanner() {
   ];
 
   return (
-    <section className="case">
+    <section className="case case--sbp">
       {/* HEADER */}
       <div className="case__header">
         <motion.h1
@@ -65,8 +65,8 @@ export default function SmartBudgetPlanner() {
             insights
           </li>
           <li className="case__list-item">
-            🌍 <strong>GeoIP-based country detection</strong> automatically adjusts
-            benchmarks based on region
+            🌍 <strong>GeoIP-based country detection</strong> automatically
+            adjusts benchmarks based on region
           </li>
           <li className="case__list-item">
             📈 <strong>Category and monthly breakdown charts</strong> using

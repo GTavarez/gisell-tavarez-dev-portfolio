@@ -1,136 +1,193 @@
-.case {
-  padding: 4rem 1.5rem;
-  max-width: 1120px;
-  margin: 0 auto;
+/* ============================================================
+   SMART BUDGET PLANNER — FINAL FIXED VERSION
+   Theme-Aware + Consistent Spacing + Mobile Navbar Offset
+============================================================ */
+
+:root {
+  --navbar-offset: 140px; /* ensure spacing below navbar */
 }
 
-.case__header {
+.case--sbp {
+  background: var(--bg);
+  color: var(--text);
+
+  /* FIX: Proper spacing on ALL screens */
+  padding: var(--navbar-offset) 1.5rem 4rem;
+
+  max-width: 1120px;
+  margin: 0 auto;
+
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* -----------------------
+   HEADER
+------------------------ */
+.case--sbp .case__header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.case__title {
+.case--sbp .case__title {
   font-family: var(--font-head);
   font-size: 3rem;
+  color: var(--text);
 }
 
-.case__subtitle {
+.case--sbp .case__subtitle {
   max-width: 720px;
   margin: 1rem auto 0.5rem;
   color: var(--text-muted);
 }
 
-.case__meta {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.case__section {
+/* -----------------------
+   SECTIONS
+------------------------ */
+.case--sbp .case__section {
   margin: 3rem 0;
 }
 
-.case__section-title {
+.case--sbp .case__section-title {
   font-size: 1.7rem;
   margin-bottom: 1rem;
+  color: var(--text);
 }
 
-.case__text {
-  color: var(--text-muted);
+.case--sbp .case__text {
   max-width: 760px;
+  color: var(--text-muted);
 }
 
-.case__list {
+/* -----------------------
+   LISTS
+------------------------ */
+.case--sbp .case__list {
   padding-left: 1.2rem;
 }
 
-.case__list-item {
+.case--sbp .case__list-item {
   margin: 0.4rem 0;
   color: var(--text-muted);
 }
 
-.case__tags {
+/* -----------------------
+   TAGS
+------------------------ */
+.case--sbp .case__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
 }
 
-.case__tag {
+.case--sbp .case__tag {
   padding: 0.4rem 0.7rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   background: var(--bg-elevated);
+  color: var(--text);
 }
 
-.case__grid {
+/* -----------------------
+   CHALLENGE CARDS
+------------------------ */
+.case--sbp .case__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
-.case__card {
+.case--sbp .case__card {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
+  background: var(--bg-card);
   padding: 1.3rem;
+  transition: background 0.35s ease, border-color 0.35s ease;
 }
 
-.case__card-title {
+.case--sbp .case__card-title {
   font-size: 1.05rem;
   margin-bottom: 0.6rem;
+  color: var(--text);
 }
 
-.case__card-text {
+.case--sbp .case__card-text {
   font-size: 0.95rem;
   color: var(--text-muted);
   margin-bottom: 0.4rem;
 }
 
-.case__gallery {
+/* -----------------------
+   GALLERY
+------------------------ */
+.case--sbp .case__gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 
-.case__img {
+.case--sbp .case__img {
   width: 100%;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   object-fit: cover;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
 }
 
-.case__section--center {
+.case--sbp .case__img--clickable:hover {
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+/* -----------------------
+   ACTION BUTTONS
+------------------------ */
+.case--sbp .case__section--center {
   text-align: center;
 }
 
-.case__btn {
+.case--sbp .case__btn {
   display: inline-block;
   margin: 0 0.7rem;
   padding: 0.9rem 1.6rem;
   border-radius: 999px;
   border: none;
   text-decoration: none;
-  background: var(--gradient-accent);
-  color: #0b1120;
+  background: var(--accent);
+  color: var(--bg);
   font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.case__btn--outline {
+.case--sbp .case__btn:hover {
+  background: var(--accent-soft);
+}
+
+.case--sbp .case__btn--outline {
   background: transparent;
   border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  color: var(--text);
 }
 
-/* Responsive tweaks */
+.case--sbp .case__btn--outline:hover {
+  background: var(--bg-soft);
+}
+
+/* -----------------------
+   RESPONSIVE FIX
+------------------------ */
 @media (max-width: 768px) {
-  .case {
-    padding: 3.2rem 1.25rem;
+  .case--sbp {
+    /* FIX: Keep navbar spacing even on mobile */
+    padding-top: var(--navbar-offset);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
-  .case__title {
-    font-size: 2.2rem;
+  .case--sbp .case__title {
+    font-size: 2.3rem;
   }
 
-  .case__subtitle {
+  .case--sbp .case__subtitle {
     font-size: 0.95rem;
   }
 }

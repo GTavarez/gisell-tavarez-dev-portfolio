@@ -1,5 +1,6 @@
 // src/Components/App/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import Navbar from "../Navbar/Navbar";
 
@@ -12,18 +13,24 @@ import HuskiesHub from "../../Pages/HuskiesHub/HuskiesHub";
 import SmartBudgetPlanner from "../../Pages/SmartBudgetPlanner/SmartBudgetPlanner";
 
 function App() {
+  // Load stored theme or default to dark
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  // Apply theme to <body> whenever it changes
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <Router>
-      <Navbar />
+      <Navbar theme={theme} setTheme={setTheme} />
 
       <Routes>
-        {/* HOME */}
         <Route path="/" element={<Home />} />
-
-        {/* RESUME PAGE */}
         <Route path="/resume" element={<Resume />} />
-
-        {/* CASE STUDIES */}
         <Route path="/huskieshub" element={<HuskiesHub />} />
         <Route path="/smartbudgetplanner" element={<SmartBudgetPlanner />} />
       </Routes>
