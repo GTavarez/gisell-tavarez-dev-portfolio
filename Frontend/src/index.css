@@ -11,6 +11,7 @@
   --bg-soft: #fafaff;
   --bg-card: #f3f3ff;
   --bg-elevated: #ffffff;
+  --border-subtle: #e5ddff;
 
   --text: #111111;
   --text-muted: #555;
@@ -18,7 +19,7 @@
 
   --accent: #6b4eff;
   --accent-soft: #ede8ff;
-   --navbar-offset: 140px;
+  --navbar-offset: 140px;
   --border: #e5ddff;
 
   --hero-bg: linear-gradient(135deg, #f6f8ff 0%, #eef2ff 40%, #ffffff 100%);
@@ -39,12 +40,12 @@
   --text: #f0f0f5;
   --text-muted: #c3c6d1;
   --text-subtle: #9ca3af;
+  --border-subtle: #1a1c2c;
 
   --accent: #a38aff;
   --accent-soft: #2a2350;
 
   --border: #1a1c2c;
-  
 
   --hero-bg: linear-gradient(135deg, #0d0f1a 0%, #07080f 40%, #000 100%);
 }
