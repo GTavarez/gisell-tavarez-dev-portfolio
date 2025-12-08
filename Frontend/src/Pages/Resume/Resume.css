@@ -1,44 +1,53 @@
-/* .resume-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  color: var(--text);
-} */
+/* PAGE WRAPPER */
 .resume-page {
-  padding: 80px 20px;
+  padding: 120px 20px 80px; /* extra padding at top for navbar */
   display: flex;
   flex-direction: column;
   align-items: center;
   background: var(--bg);
   color: var(--text);
+
   transition:
     background 0.3s ease,
     color 0.3s ease;
 }
 
-/* ...cards use var(--card-bg), var(--accent), var(--text-muted) etc... */
+/* SECTIONS */
+.resume-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+}
 
+.resume-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+/* HEADER (Name + title + links) */
 .resume-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
 .resume-name {
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 800;
 }
 
 .resume-title {
   font-size: 1.3rem;
   color: var(--accent);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .resume-links {
-  margin-top: 14px;
+  margin-top: 16px;
   display: flex;
   gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .resume-links a {
@@ -47,42 +56,17 @@
   font-weight: 500;
 }
 
-.download-btn {
-  margin-top: 18px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.download-btn:hover {
-  background: var(--accent-hover);
-}
-
-.resume-section {
-  margin-bottom: 40px;
-}
-
-.resume-section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 16px;
-  color: var(--accent);
-}
-
+/* SKILLS GRID */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
+  gap: 14px;
+  margin-top: 10px;
 }
 
-.project {
-  margin-bottom: 24px;
-}
-
+/* PROJECT + JOB SECTIONS */
+.project,
 .job {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }

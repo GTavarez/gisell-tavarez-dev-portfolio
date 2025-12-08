@@ -1,9 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goToProjects = () => {
+    const scroll = () => {
+      document
+        .getElementById("projects")
+        ?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    // If not on home page → go home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scroll, 300);
+    } else {
+      scroll();
+    }
+  };
+
   return (
     <div className="hero-container">
       <motion.div
@@ -20,18 +39,21 @@ export default function Hero() {
 
         <p className="hero-text">
           I build clean, modern, user-focused applications with React, Node,
-          Express, and MongoDB.  
-          My background as a paramedic gives me a unique problem-solving
-          mindset—calm, precise, and always mission-focused.
+          Express, and MongoDB. My background as a paramedic gives me a unique
+          problem-solving mindset—calm, precise, and always mission-focused.
         </p>
 
         <div className="hero-buttons">
-          <Link to="/resume-download" className="hero-btn primary">
+          <button
+            className="hero-btn primary"
+            onClick={() => navigate("/resume-download")}
+          >
             Download Resume
-          </Link>
-          <Link to="/projects" className="hero-btn secondary">
+          </button>
+
+          <button className="hero-btn secondary" onClick={goToProjects}>
             View Projects
-          </Link>
+          </button>
         </div>
       </motion.div>
     </div>

@@ -1,83 +1,123 @@
-import React, { useState } from "react";
 import "./ResumeDownload.css";
+import { motion } from "framer-motion";
 
-function ResumeDownload() {
-  const [loading, setLoading] = useState(false);
-  const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
-
+export default function ResumeDownload() {
   const downloadResume = async (type) => {
     try {
-      setLoading(true);
+      const res = await fetch(`http://localhost:8080/api/resume/${type}`);
 
-      const response = await fetch(`${backendURL}/resume/${type}`, {
-        method: "GET",
-      });
+      if (!res.ok) throw new Error("Failed to download");
 
-      if (!response.ok) {
-        throw new Error("Failed to download PDF");
-      }
-
-      const blob = await response.blob();
+      const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download =
-        type === "portfolio"
-          ? "Gisell_Tavarez_Portfolio_Resume.pdf"
-          : type === "ats"
-          ? "Gisell_Tavarez_ATS_Resume.pdf"
-          : "Gisell_Tavarez_Simple_Resume.pdf";
-
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-      alert("Error downloading resume. Try again.");
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${type}-resume.pdf`;
+      link.click();
+    } catch (err) {
+      console.error(err);
+      alert("Error downloading resume");
     }
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
-    <div className="resumeDownload__wrapper">
-      <h1 className="resumeDownload__title">Download My Resume</h1>
-      <p className="resumeDownload__subtitle">
-        Choose a resume format that fits your needs.
-      </p>
+    <section className="">
+      {/* Spotlight effect */}
+      <div className="spotlight-bg"></div>
 
-      <div className="resumeDownload__buttons">
-        <button
-          disabled={loading}
-          onClick={() => downloadResume("portfolio")}
-          className="resumeBtn purple"
-        >
-          Portfolio Resume
-        </button>
+      <motion.h1
+        className="resume-download-title"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Download My Resume
+      </motion.h1>
 
-        <button
-          disabled={loading}
-          onClick={() => downloadResume("ats")}
-          className="resumeBtn black"
-        >
-          ATS-Optimized Resume
-        </button>
+      <motion.p
+        className="resume-download-subtitle"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        Choose the version that best fits your needs
+      </motion.p>
 
-        <button
-          disabled={loading}
-          onClick={() => downloadResume("simple")}
-          className="resumeBtn white"
+      <div className="resume-download-grid">
+        {/* PORTFOLIO RESUME */}
+        <motion.div
+          className="resume-card glass"
+          variants={cardVariants}
+          initial="hidden"
+          animate="show"
+          whileHover={{ y: -8, scale: 1.02 }}
         >
-          Simple Clean Resume
-        </button>
+          <div className="resume-icon floating">🎨</div>
+          <h2>Portfolio Resume</h2>
+          <p>
+            A visually engaging resume perfect for recruiters, networking, and
+            presentations.
+          </p>
+          <button
+            onClick={() => downloadResume("portfolio")}
+            className="resume-btn primary"
+          >
+            Download Portfolio PDF
+          </button>
+        </motion.div>
+
+        {/* ATS RESUME */}
+        <motion.div
+          className="resume-card glass"
+          variants={cardVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.15 }}
+          whileHover={{ y: -8, scale: 1.02 }}
+        >
+          <div className="resume-icon floating">🤖</div>
+          <h2>ATS-Friendly Resume</h2>
+          <p>
+            Optimized for Applicant Tracking Systems — clean text, no formatting
+            issues.
+          </p>
+          <button
+            onClick={() => downloadResume("ats")}
+            className="resume-btn primary"
+          >
+            Download ATS PDF
+          </button>
+        </motion.div>
+
+        {/* SIMPLE RESUME */}
+        <motion.div
+          className="resume-card glass"
+          variants={cardVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.3 }}
+          whileHover={{ y: -8, scale: 1.02 }}
+        >
+          <div className="resume-icon floating">📄</div>
+          <h2>Simple Resume</h2>
+          <p>
+            A clean, minimal format ideal for quick applications and
+            readability.
+          </p>
+          <button
+            onClick={() => downloadResume("simple")}
+            className="resume-btn primary"
+          >
+            Download Simple PDF
+          </button>
+        </motion.div>
       </div>
-
-      {loading && <div className="resumeDownload__loading">Downloading…</div>}
-    </div>
+    </section>
   );
 }
-
-export default ResumeDownload;

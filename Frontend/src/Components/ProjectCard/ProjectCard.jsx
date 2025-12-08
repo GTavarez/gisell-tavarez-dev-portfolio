@@ -1,66 +1,30 @@
 import "./ProjectCard.css";
-import { motion } from "framer-motion";
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ title, description, tags, caseStudy, github }) {
   return (
-    <motion.article
-      className="project-card"
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 260, damping: 18 }}
-    >
-      <h3 className="project-card__title">{project.name}</h3>
+    <div className="project-card">
+      <h3 className="project-title">{title}</h3>
+      <p className="project-description">{description}</p>
 
-      <p className="project-card__role">
-        {project.role} · {project.period}
-      </p>
-
-      <p className="project-card__description">{project.description}</p>
-
-      {/* Tech tags */}
-      <div className="project-card__tags">
-        {project.tech.map((tag) => (
-          <span key={tag} className="project-card__tag">
-            {tag}
-          </span>
+      <div className="project-tags">
+        {tags.map((tag, index) => (
+          <span key={index} className="tag">{tag}</span>
         ))}
       </div>
 
-      {/* LINKS */}
-      <div className="project-card__links">
-        {/* Case Study */}
-        {project.links?.caseStudy && (
-          <a
-            href={project.links.caseStudy}
-            className="project-card__link project-card__link--case"
-          >
-            Case Study →
+      <div className="project-buttons">
+        {caseStudy && (
+          <a href={caseStudy} target="_blank" rel="noreferrer" className="btn btn-primary">
+            View Case Study
           </a>
         )}
 
-        {/* Live Demo */}
-        {project.links?.live && (
-          <a
-            href={project.links.live}
-            target="_blank"
-            rel="noreferrer"
-            className="project-card__link project-card__link--live"
-          >
-            Live →
-          </a>
-        )}
-
-        {/* GitHub */}
-        {project.links?.github && (
-          <a
-            href={project.links.github}
-            target="_blank"
-            rel="noreferrer"
-            className="project-card__link project-card__link--github"
-          >
-            GitHub →
+        {github && (
+          <a href={github} target="_blank" rel="noreferrer" className="btn btn-secondary">
+            GitHub
           </a>
         )}
       </div>
-    </motion.article>
+    </div>
   );
 }

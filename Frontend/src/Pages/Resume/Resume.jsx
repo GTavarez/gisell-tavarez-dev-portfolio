@@ -1,9 +1,9 @@
+import ResumeDownload from "../ResumeDownload/ResumeDownload";
 import "./Resume.css";
 
 export default function Resume() {
   return (
     <div className="resume-page">
-
       {/* HEADER SECTION */}
       <header className="resume-header">
         <h1 className="resume-name">Gisell Tavarez</h1>
@@ -11,32 +11,36 @@ export default function Resume() {
 
         <div className="resume-links">
           <a href="tel:8623464913">📞 862-346-4913</a>
-          <a href="https://www.linkedin.com/in/gisell-tavarez" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/gisell-tavarez"
+            target="_blank"
+            rel="noreferrer"
+          >
             🔗 LinkedIn
           </a>
-          <a href="https://github.com/GTavarez" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/GTavarez"
+            target="_blank"
+            rel="noreferrer"
+          >
             💻 GitHub
           </a>
         </div>
 
         {/* DOWNLOAD */}
-        <button
-          className="download-btn"
-          onClick={() => window.open("http://localhost:8080/api/resume/theme2", "_blank")}
-        >
-          ⬇ Download PDF
-        </button>
+        <ResumeDownload />
       </header>
 
       {/* SUMMARY */}
       <section className="resume-section">
         <h2>Professional Summary</h2>
         <p>
-          Full-stack software engineer with a strong background in emergency medicine, 
-          problem-solving under pressure, leadership, and cross-functional teamwork. 
-          Recently completed TripleTen’s Software Engineering program, where I built 
-          real-world full-stack applications using React, Node, Express, and MongoDB.  
-          Passionate about building tech that improves people’s lives.
+          Full-stack software engineer with a strong background in emergency
+          medicine, problem-solving under pressure, leadership, and
+          cross-functional teamwork. Recently completed TripleTen’s Software
+          Engineering program, where I built real-world full-stack applications
+          using React, Node, Express, and MongoDB. Passionate about building
+          tech that improves people’s lives.
         </p>
       </section>
 
@@ -64,9 +68,10 @@ export default function Resume() {
         <div className="project">
           <h3>HuskiesHub – Full-Stack Sports Management Platform</h3>
           <p>
-            A full platform for the Empire State Huskies softball organization, including 
-            player profiles, schedules, maps, clinics, and admin tools.  
-            Integrates Google Calendar API, Google Maps API, and GridFS for image hosting.
+            A full platform for the Empire State Huskies softball organization,
+            including player profiles, schedules, maps, clinics, and admin
+            tools. Integrates Google Calendar API, Google Maps API, and GridFS
+            for image hosting.
           </p>
           <ul>
             <li>React + Node + Express + MongoDB</li>
@@ -78,8 +83,9 @@ export default function Resume() {
         <div className="project">
           <h3>Smart Budget Planner – Financial Tracking Web App</h3>
           <p>
-            A location-aware budget planner using IP geolocation, spending analytics, and 
-            personalized insights. Includes charts, category management, and responsive UI.
+            A location-aware budget planner using IP geolocation, spending
+            analytics, and personalized insights. Includes charts, category
+            management, and responsive UI.
           </p>
           <ul>
             <li>React + Node + Chart.js</li>
@@ -108,13 +114,16 @@ export default function Resume() {
         <div className="job">
           <h3>Paramedic — 2018–Present</h3>
           <p>
-            Delivered high-acuity emergency care across diverse patient populations.  
-            Applied critical problem-solving, rapid decision-making, and leadership 
-            in high-pressure environments.
+            Delivered high-acuity emergency care across diverse patient
+            populations. Applied critical problem-solving, rapid
+            decision-making, and leadership in high-pressure environments.
           </p>
 
           <ul>
-            <li>Led patient care during emergencies with calm, structured decision-making</li>
+            <li>
+              Led patient care during emergencies with calm, structured
+              decision-making
+            </li>
             <li>Collaborated with multi-disciplinary teams</li>
             <li>Documented assessments & treatments with extreme accuracy</li>
             <li>Used data-driven protocols to improve patient outcomes</li>

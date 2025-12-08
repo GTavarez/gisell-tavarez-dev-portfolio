@@ -1,62 +1,83 @@
-.resumeDownload__wrapper {
-  max-width: 700px;
-  margin: 80px auto;
+.resume-download-page {
+  padding: 6rem 2rem;
   text-align: center;
-  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.resumeDownload__title {
-  font-size: 36px;
+.resume-download-title {
+  font-size: 2.6rem;
   font-weight: 800;
-  color: #6b4eff;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
+  margin-top: 50px;
 }
 
-.resumeDownload__subtitle {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 40px;
+.resume-download-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
 }
 
-.resumeDownload__buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.resume-download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.resumeBtn {
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.25s ease;
-  border: none;
+.resume-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.resumeBtn:hover {
-  transform: translateY(-3px);
+.resume-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
 }
 
-.resumeBtn.purple {
-  background-color: #6b4eff;
-  color: #fff;
+.resume-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.resumeBtn.black {
-  background-color: #111;
-  color: #fff;
+.resume-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: var(--text);
 }
 
-.resumeBtn.white {
-  background-color: #fff;
-  border: 2px solid #ddd;
-  color: #111;
+.resume-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
 }
 
-.resumeDownload__loading {
-  margin-top: 30px;
-  font-size: 18px;
+/* BUTTON */
+.resume-btn {
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #6b4eff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s ease;
+}
+
+.resume-btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.resume-btn.primary:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
 }

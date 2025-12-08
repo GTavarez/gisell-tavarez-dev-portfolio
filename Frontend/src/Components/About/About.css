@@ -3,11 +3,14 @@
   padding: 5rem 2rem;
   background: var(--bg);
   transition: background 0.3s ease;
+  display: flex;
+  justify-content: center;
 }
 
 .about-content {
   max-width: 900px;
   text-align: center;
+  margin: 0 auto;
 }
 
 .about-title {

@@ -1,110 +1,20 @@
-.projects-section {
+.projects-page {
   padding: 5rem 2rem;
   background: var(--bg);
-  transition: background 0.3s ease;
 }
 
 .projects-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   font-weight: 800;
-  color: var(--text);
   margin-bottom: 3rem;
-  transition: color 0.3s ease;
+  color: var(--text);
 }
 
 .projects-grid {
-  max-width: 1200px;
-  margin: auto;
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-}
-
-.project-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
-  padding: 2rem;
-  border-radius: 16px;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0px 8px 25px rgba(107, 78, 255, 0.18);
-}
-
-.project-card h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.7rem;
-  transition: color 0.3s ease;
-}
-
-.proj-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-.stack-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 1.3rem;
-}
-
-.tag {
-  background: var(--accent-secondary, #ede8ff);
-  color: var(--accent);
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
-}
-
-/* BUTTONS */
-.proj-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  text-decoration: none;
-  padding: 8px 14px;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border 0.3s ease;
-}
-
-.case-btn {
-  background: var(--accent);
-  color: white;
-}
-
-.case-btn:hover {
-  background: #5a3ee8;
-}
-
-.git-btn {
-  background: var(--card-bg);
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.git-btn:hover {
-  background: rgba(107, 78, 255, 0.1);
+  width: 1400px;
+  margin: 0 auto;
 }
