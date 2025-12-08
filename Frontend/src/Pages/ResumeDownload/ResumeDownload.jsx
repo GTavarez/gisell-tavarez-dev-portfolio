@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 export default function ResumeDownload() {
   const downloadResume = async (type) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/resume/${type}`);
+      const res = await fetch(
+        `https://resume-backend-345042402644.us-east1.run.app/api/resume/${type}`
+      );
 
       if (!res.ok) throw new Error("Failed to download");
 

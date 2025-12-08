@@ -20,11 +20,15 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const response = await fetch("http://localhost:8080/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://resume-backend-345042402644.us-east1.run.app/api/contact",
+
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to send");
 
