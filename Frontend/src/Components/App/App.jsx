@@ -1,16 +1,16 @@
 // src/Components/App/App.jsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Navbar from "../Navbar/Navbar";
 
 // Main pages
 import Home from "../Home/Home";
-import Resume from "../../Pages/Resume/Resume";
 
 // Case studies
 import HuskiesHub from "../../Pages/HuskiesHub/HuskiesHub";
 import SmartBudgetPlanner from "../../Pages/SmartBudgetPlanner/SmartBudgetPlanner";
+import ResumeDownload from "../../Pages/ResumeDownload/ResumeDownload";
 
 function App() {
   // Load stored theme or default to dark
@@ -30,7 +30,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/resume" element={<Resume />} />
+
+        {/* Redirect /resume → /resume-download */}
+        <Route path="/resume" element={<Navigate to="/resume-download" replace />} />
+
+        <Route path="/resume-download" element={<ResumeDownload />} />
         <Route path="/huskieshub" element={<HuskiesHub />} />
         <Route path="/smartbudgetplanner" element={<SmartBudgetPlanner />} />
       </Routes>

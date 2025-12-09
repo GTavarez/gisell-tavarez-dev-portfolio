@@ -2,6 +2,7 @@ import "./Projects.css";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
 export default function Projects() {
+  
   const projectList = [
     {
       title: "HuskiesHub (Full-Stack App)",
@@ -50,7 +51,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="projects-page">
+    <div id="projects" className="projects-page">
       <h1 className="projects-title">Featured Projects</h1>
 
       <div className="projects-grid">

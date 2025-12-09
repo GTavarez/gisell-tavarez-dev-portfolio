@@ -1,27 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const goToProjects = () => {
-    const scroll = () => {
-      document
-        .getElementById("projects")
-        ?.scrollIntoView({ behavior: "smooth" });
-    };
-
-    // If not on home page → go home first
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(scroll, 300);
-    } else {
-      scroll();
-    }
-  };
 
   return (
     <div className="hero-container">
@@ -51,7 +34,10 @@ export default function Hero() {
             Download Resume
           </button>
 
-          <button className="hero-btn secondary" onClick={goToProjects}>
+          <button
+            className="hero-btn secondary"
+            onClick={() => navigate("/?scroll=projects")}
+          >
             View Projects
           </button>
         </div>

@@ -3,15 +3,18 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "../../utils/motion";
 import { useState } from "react";
 import Lightbox from "../../Components/Lightbox/Lightbox";
-
+import hero from "../../assets/hero.png"
+import teams from "../../assets/teams.png"
+import player from "../../assets/profile.png"
+import maps from "../../assets/maps.png"
 export default function HuskiesHub() {
   const [lightboxSrc, setLightboxSrc] = useState(null);
 
   const images = [
-    { src: "/images/huskieshub/dashboard.png", alt: "HuskiesHub Dashboard" },
-    { src: "/images/huskieshub/schedule.png", alt: "Team Schedule" },
-    { src: "/images/huskieshub/players.png", alt: "Players Page" },
-    { src: "/images/huskieshub/clinics.png", alt: "Clinics Page" },
+    { src: hero, alt: "HuskiesHub Dashboard" },
+    { src: teams, alt: "Teams Page" },
+    { src: player, alt: "Player Profile Page" },
+    { src: maps, alt: "Game Location Map" },
   ];
 
   const getAlt = () =>

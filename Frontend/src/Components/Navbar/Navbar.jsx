@@ -57,7 +57,7 @@ export default function Navbar() {
           ))}
 
           {/* Resume goes to its own page */}
-          <Link to="/resume" className="navbar__link">
+          <Link to="/resume-download" className="navbar__link">
             Resume
           </Link>
 

@@ -1,5 +1,13 @@
+/* Page wrapper */
 .resume-download-page {
-  padding: 6rem 2rem;
+  padding-top: 7.5rem; /* prevents navbar overlap */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 4rem;
+
+  max-width: 1120px;
+  margin: 0 auto;
+
   text-align: center;
   background: var(--bg);
   color: var(--text);
@@ -9,19 +17,20 @@
     color 0.3s ease;
 }
 
+/* Title */
 .resume-download-title {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  margin-top: 50px;
 }
 
 .resume-download-subtitle {
   font-size: 1.1rem;
   color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
+/* Card Grid */
 .resume-download-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -30,6 +39,7 @@
   margin: 0 auto;
 }
 
+/* Cards */
 .resume-card {
   background: var(--bg-soft);
   border: 1px solid var(--border);
@@ -41,7 +51,7 @@
 
 .resume-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
 
 .resume-icon {
@@ -61,7 +71,7 @@
   margin-bottom: 1.4rem;
 }
 
-/* BUTTON */
+/* Buttons */
 .resume-btn {
   padding: 0.9rem 1.4rem;
   font-size: 1rem;
@@ -69,6 +79,7 @@
   border-radius: 10px;
   cursor: pointer;
   border: none;
+  width: 100%;
   transition: 0.25s ease;
 }
 

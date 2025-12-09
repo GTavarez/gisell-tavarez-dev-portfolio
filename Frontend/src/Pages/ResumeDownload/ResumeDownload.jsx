@@ -1,3 +1,4 @@
+// src/Pages/ResumeDownload/ResumeDownload.jsx
 import "./ResumeDownload.css";
 import { motion } from "framer-motion";
 
@@ -29,7 +30,7 @@ export default function ResumeDownload() {
   };
 
   return (
-    <section className="">
+    <section className="resume-download-page">
       {/* Spotlight effect */}
       <div className="spotlight-bg"></div>
 
@@ -63,8 +64,8 @@ export default function ResumeDownload() {
           <div className="resume-icon floating">🎨</div>
           <h2>Portfolio Resume</h2>
           <p>
-            A visually engaging resume perfect for recruiters, networking, and
-            presentations.
+            A visually engaging resume perfect for recruiters, networking,
+            and presentations.
           </p>
           <button
             onClick={() => downloadResume("portfolio")}
@@ -86,8 +87,8 @@ export default function ResumeDownload() {
           <div className="resume-icon floating">🤖</div>
           <h2>ATS-Friendly Resume</h2>
           <p>
-            Optimized for Applicant Tracking Systems — clean text, no formatting
-            issues.
+            Optimized for Applicant Tracking Systems — clean text,
+            no formatting issues.
           </p>
           <button
             onClick={() => downloadResume("ats")}
