@@ -1,0 +1,24 @@
+[
+  {
+    "id": "huskieshub",
+    "title": "HuskiesHub",
+    "subtitle": "Empire State Huskies Softball Platform",
+    "description": "Centralized web app for player profiles, schedules, clinics, and college commits.",
+    "techStack": ["React", "Node.js", "Express", "MongoDB"],
+    "role": "Full-Stack Developer",
+    "thumbnail": "/images/huskieshub/dashboard.svg",
+    "caseStudyPath": "/huskieshub",
+    "github": "https://github.com/GTavarez/HuskiesHub-Frontend"
+  },
+  {
+    "id": "smart-budget-planner",
+    "title": "Smart Budget Planner",
+    "subtitle": "Insightful personal finance dashboard",
+    "description": "Budgeting app with category-based views, monthly breakdowns, and benchmark comparisons.",
+    "techStack": ["React", "Charts", "REST APIs"],
+    "role": "Frontend Developer",
+    "thumbnail": "/images/sbp/dashboard.svg",
+    "caseStudyPath": "/smart-budget-planner",
+    "github": "https://github.com/GTavarez/Smart-Budget-Planner"
+  }
+]

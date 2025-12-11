@@ -1,0 +1,77 @@
+{
+  "name": "Gisell Tavarez",
+  "title": "Full-Stack Developer | Paramedic",
+  "location": "New Jersey, USA",
+  "phone": "862-346-4913",
+  "email": "youremail@example.com",
+  "linkedin": "https://www.linkedin.com/in/gisell-tavarez",
+  "github": "https://github.com/GTavarez",
+  "summary": "Full-stack developer and practicing paramedic transitioning into tech, combining real-time decision making, systems thinking, and user-centered design to build responsive, resilient web applications.",
+  "skills": {
+    "frontend": [
+      "React",
+      "Vite",
+      "JavaScript (ES6+)",
+      "HTML5",
+      "CSS3",
+      "Responsive Design"
+    ],
+    "backend": ["Node.js", "Express", "REST APIs"],
+    "tools": ["Git & GitHub", "Vite", "Figma", "Postman", "VS Code"],
+    "soft": [
+      "Calm under pressure",
+      "Teamwork",
+      "Communication",
+      "Problem-solving"
+    ]
+  },
+  "projects": [
+    {
+      "name": "HuskiesHub",
+      "role": "Full-Stack Developer",
+      "description": "A softball platform for the Empire State Huskies with player profiles, schedules, clinics, and college commits.",
+      "techStack": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Google Calendar API",
+        "Google Maps API"
+      ],
+      "links": {
+        "github": "https://github.com/GTavarez/HuskiesHub-Frontend"
+      }
+    },
+    {
+      "name": "Smart Budget Planner",
+      "role": "Frontend Developer",
+      "description": "Smart budgeting dashboard with category insights, monthly overviews, and benchmark comparisons.",
+      "techStack": ["React", "Chart.js (or custom charts)", "REST APIs"],
+      "links": {
+        "github": "https://github.com/GTavarez/Smart-Budget-Planner"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "title": "Paramedic",
+      "organization": "911 EMS",
+      "location": "New Jersey, USA",
+      "highlights": [
+        "Led rapid triage and decision-making in high-pressure environments, collaborating closely with cross-functional teams (fire, police, hospital staff).",
+        "Documented critical information with high accuracy, mirroring the attention to detail needed for production systems.",
+        "Trained new team members, explaining complex protocols clearly and calmly."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "program": "Software Engineering Bootcamp",
+      "school": "TripleTen",
+      "details": [
+        "Built full-stack applications with React and Node.js.",
+        "Worked in agile-style sprints, using GitHub for version control and code reviews."
+      ]
+    }
+  ]
+}
