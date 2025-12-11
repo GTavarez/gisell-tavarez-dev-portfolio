@@ -3,27 +3,18 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "../../utils/motion";
 import { useState } from "react";
 import Lightbox from "../../Components/Lightbox/Lightbox";
+import dashboard from "../../assets/sbp1.jpg";
+import chart from "../../assets/sbp4.jpg";
+import monthly from "../../assets/sbp3.jpg";
+import display from "../../assets/sbp2.jpg";
 
 export default function SmartBudgetPlanner() {
   const [lightboxSrc, setLightboxSrc] = useState(null);
-
   const images = [
-    {
-      src: "/images/sbp/dashboard.png",
-      alt: "Smart Budget Planner Dashboard",
-    },
-    {
-      src: "/images/sbp/categories.png",
-      alt: "Category Breakdown Chart",
-    },
-    {
-      src: "/images/sbp/monthly.png",
-      alt: "Monthly Spending Overview",
-    },
-    {
-      src: "/images/sbp/country.png",
-      alt: "Country Detection Display",
-    },
+    { src: dashboard, alt: "Smart Budget Planner Dashboard" },
+    { src: chart, alt: "Category Breakdown Chart" },
+    { src: monthly, alt: "Monthly Spending Overview" },
+    { src: display, alt: "Dashboard Display" },
   ];
 
   return (
