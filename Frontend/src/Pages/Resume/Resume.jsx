@@ -32,20 +32,21 @@ export default function Resume() {
       </header>
 
       {/* SUMMARY */}
-      <section className="resume-section">
+      <section data-aos="fade-up" className="resume-section">
         <h2>Professional Summary</h2>
         <p>
           Full-stack software engineer with a strong background in emergency
           medicine, problem-solving under pressure, leadership, and
           cross-functional teamwork. Recently completed TripleTen’s Software
           Engineering program, where I built real-world full-stack applications
-          using React, Node, Express, and MongoDB. Passionate about building
-          tech that improves people’s lives.
+          using React, Node, Express, and MongoDB, and currently serve as a
+          volunteer Full-Stack Engineer for the Murphy Foundation in Uganda.
+          Passionate about building tech that improves people’s lives.
         </p>
       </section>
 
       {/* SKILLS */}
-      <section className="resume-section">
+      <section data-aos="fade-up" className="resume-section">
         <h2>Technical Skills</h2>
         <ul className="skills-grid">
           <li>JavaScript (ES6+)</li>
@@ -62,7 +63,7 @@ export default function Resume() {
       </section>
 
       {/* PROJECTS */}
-      <section className="resume-section">
+      <section data-aos="fade-up" className="resume-section">
         <h2>Projects</h2>
 
         <div className="project">
@@ -96,7 +97,7 @@ export default function Resume() {
       </section>
 
       {/* CERTIFICATIONS */}
-      <section className="resume-section">
+      <section data-aos="fade-up" className="resume-section">
         <h2>Certifications</h2>
         <ul>
           <li>TripleTen Software Engineering Bootcamp</li>
@@ -108,7 +109,7 @@ export default function Resume() {
       </section>
 
       {/* EXPERIENCE */}
-      <section className="resume-section">
+      <section data-aos="fade-up" className="resume-section">
         <h2>Professional Experience</h2>
 
         <div className="job">
@@ -127,6 +128,58 @@ export default function Resume() {
             <li>Collaborated with multi-disciplinary teams</li>
             <li>Documented assessments & treatments with extreme accuracy</li>
             <li>Used data-driven protocols to improve patient outcomes</li>
+          </ul>
+        </div>
+      </section>
+      <section data-aos="fade-up" className="resume-section">
+        <h2>Professional Experience</h2>
+
+        <div className="job">
+          <h3>Paramedic — 2018–Present</h3>
+          <p>
+            Delivered high-acuity emergency care across diverse patient
+            populations. Applied critical problem-solving, rapid
+            decision-making, and leadership in high-pressure environments.
+          </p>
+
+          <ul>
+            <li>
+              Led patient care during emergencies with calm, structured
+              decision-making
+            </li>
+            <li>Collaborated with multi-disciplinary teams</li>
+            <li>Documented assessments & treatments with extreme accuracy</li>
+            <li>Used data-driven protocols to improve patient outcomes</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* VOLUNTEER EXPERIENCE */}
+      <section data-aos="fade-up" className="resume-section">
+        <h2>Volunteer Experience</h2>
+
+        <div className="job">
+          <h3>Full-Stack Engineer — Murphy Foundation (Uganda)</h3>
+          <p>2024 – Present | Remote (Volunteer)</p>
+
+          <ul>
+            <li>
+              Contribute to the development and enhancement of digital tools
+              that support educational and community programs in underserved
+              regions.
+            </li>
+            <li>
+              Collaborate with international teams to design and build
+              full-stack features using modern web technologies.
+            </li>
+            <li>
+              Improve UI/UX flows to make tools accessible for non-technical
+              users.
+            </li>
+            <li>
+              Support code quality, documentation, and long-term maintainability
+              across project modules.
+            </li>
           </ul>
         </div>
       </section>

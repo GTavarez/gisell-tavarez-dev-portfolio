@@ -64,3 +64,47 @@
   border: 1px solid var(--accent);
   color: var(--accent);
 }
+/* -----------------------------------------
+   RESPONSIVE BEHAVIOR
+----------------------------------------- */
+
+/* MOBILE — stack tighter, readable text */
+@media (max-width: 600px) {
+  .project-card {
+    padding: 1.4rem;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* TABLET — support 2-column layouts nicely */
+@media (max-width: 900px) {
+  .project-card {
+    padding: 1.6rem;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}

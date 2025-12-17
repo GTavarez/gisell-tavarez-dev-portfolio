@@ -18,7 +18,7 @@ export default function SmartBudgetPlanner() {
   ];
 
   return (
-    <section className="case case--sbp">
+    <section data-aos="fade-up" className="case case--sbp">
       {/* HEADER */}
       <div className="case__header">
         <motion.h1

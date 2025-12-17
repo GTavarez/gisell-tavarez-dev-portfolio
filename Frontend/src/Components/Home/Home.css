@@ -138,13 +138,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 350px));
   gap: 2rem;
-
-  /* ⭐ center the WHOLE grid */
   justify-content: center;
-
-  /* ⭐ center each column inside the grid */
   justify-items: center;
-
   width: 100%;
   margin: 0 auto;
 }

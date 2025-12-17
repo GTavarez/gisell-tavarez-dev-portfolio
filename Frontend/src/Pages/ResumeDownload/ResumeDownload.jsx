@@ -30,7 +30,7 @@ export default function ResumeDownload() {
   };
 
   return (
-    <section className="resume-download-page">
+    <section className="resume-download-page" data-aos="fade-up">
       {/* Spotlight effect */}
       <div className="spotlight-bg"></div>
 
@@ -64,8 +64,8 @@ export default function ResumeDownload() {
           <div className="resume-icon floating">🎨</div>
           <h2>Portfolio Resume</h2>
           <p>
-            A visually engaging resume perfect for recruiters, networking,
-            and presentations.
+            A visually engaging resume perfect for recruiters, networking, and
+            presentations.
           </p>
           <button
             onClick={() => downloadResume("portfolio")}
@@ -87,8 +87,8 @@ export default function ResumeDownload() {
           <div className="resume-icon floating">🤖</div>
           <h2>ATS-Friendly Resume</h2>
           <p>
-            Optimized for Applicant Tracking Systems — clean text,
-            no formatting issues.
+            Optimized for Applicant Tracking Systems — clean text, no formatting
+            issues.
           </p>
           <button
             onClick={() => downloadResume("ats")}

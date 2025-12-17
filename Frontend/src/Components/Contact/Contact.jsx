@@ -41,7 +41,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section" id="contact" data-aos="fade-up">
       <motion.h2
         className="contact-title"
         initial={{ opacity: 0, y: 20 }}

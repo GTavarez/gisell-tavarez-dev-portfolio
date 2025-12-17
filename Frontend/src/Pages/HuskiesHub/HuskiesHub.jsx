@@ -21,7 +21,7 @@ export default function HuskiesHub() {
     images.find((img) => img.src === lightboxSrc)?.alt || "Preview Image";
 
   return (
-    <section className="case case--huskies">
+    <section className="case case--huskies"data-aos="fade-up">
       <div className="case__container">
         {/* HEADER */}
         <div className="case__header">

@@ -2,7 +2,7 @@
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeContext from "../../context/ThemeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -16,35 +16,32 @@ export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
-    const scrollAction = () => {
+    const action = () =>
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    };
 
-    // If not on homepage → navigate THEN scroll
+    setMenuOpen(false);
+
     if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(scrollAction, 250);
+      setTimeout(action, 250);
     } else {
-      scrollAction();
+      action();
     }
   };
 
   return (
     <header className="navbar">
       <nav className="navbar__container">
-        {/* Logo scrolls to top */}
-        <div
-          className="navbar__logo"
-          onClick={() => scrollToSection("hero")}
-          style={{ cursor: "pointer" }}
-        >
+        {/* Logo */}
+        <div className="navbar__logo" onClick={() => scrollToSection("hero")}>
           GT
         </div>
 
+        {/* DESKTOP MENU */}
         <ul className="navbar__menu">
-          {/* MAIN NAV ITEMS → Always Scroll */}
           {navItems.map((item) => (
             <li key={item.id} className="navbar__item">
               <button
@@ -56,17 +53,61 @@ export default function Navbar() {
             </li>
           ))}
 
-          {/* Resume goes to its own page */}
           <Link to="/resume-download" className="navbar__link">
             Resume
           </Link>
 
-          {/* Theme Toggle */}
           <button onClick={toggleTheme} className="theme-toggle">
             {theme === "light" ? "🌙" : "☀️"}
           </button>
         </ul>
+
+        {/* HAMBURGER (shown only on tablet/mobile via CSS) */}
+        <button
+          className="navbar__hamburger"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
       </nav>
+
+      {/* MOBILE MENU BELOW NAVBAR */}
+      <div className={`mobile-menu-wrapper ${menuOpen ? "open" : ""}`}>
+        <ul className="mobile-menu">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <button
+                className="mobile-link"
+                onClick={() => scrollToSection(item.id)}
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
+
+          <li>
+            <Link
+              to="/resume-download"
+              className="mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              Resume
+            </Link>
+          </li>
+
+          <li>
+            <button
+              onClick={() => {
+                toggleTheme();
+                setMenuOpen(false);
+              }}
+              className="mobile-link"
+            >
+              {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+            </button>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }

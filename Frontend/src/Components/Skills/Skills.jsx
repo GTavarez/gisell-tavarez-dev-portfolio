@@ -7,7 +7,7 @@ import "./Skills.css";
 
 export default function Skills() {
   return (
-    <div className="skills-section" id="skills">
+    <section className="skills-section" id="skills" data-aos="fade-up">
       <motion.h2
         className="skills-title"
         initial={{ opacity: 0, y: 25 }}
@@ -90,6 +90,6 @@ export default function Skills() {
           </p>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
