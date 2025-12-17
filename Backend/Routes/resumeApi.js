@@ -1,16 +1,15 @@
 const express = require("express");
-const { getResume } = require("../Controllers/resumeController");
+const {
+  getResumeData,
+  generateResumePDF,
+} = require("../Controllers/resumeController");
 
 const router = express.Router();
-const resumeData = require("../data/resume.json");
 
-exports.getResumeData = (req, res) => {
-  res.status(200).json({
-    success: true,
-    data: resumeData,
-  });
-};
+/* JSON resume data */
+router.get("/resume-data", getResumeData);
 
-router.get("/resume-data", getResume);
+/* PDF resume download */
+router.get("/resume/download", generateResumePDF);
 
 module.exports = router;

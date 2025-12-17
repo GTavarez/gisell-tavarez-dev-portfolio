@@ -1,9 +1,6 @@
-// Backend/utils/pdfGenerator.js
 const PDFDocument = require("pdfkit");
+const QRCode = require("qrcode");
 
-/**
- * Shared helpers
- */
 function sidebarHeading(doc, text) {
   doc
     .font("Helvetica-Bold")
@@ -116,9 +113,9 @@ exports.buildPortfolioResume = (res) => {
   sidebarHeading(doc, "Education");
   doc
     .fontSize(10)
-    .text("TripleTen Software Engineering Program (2024)")
+    .text("TripleTen Software Engineering Program (2025)")
     .moveDown(0.3)
-    .text("NYC EMS Academy — Paramedic Certification");
+    .text("Bergen Community College — Paramedic Certification");
   doc.moveDown(1);
 
   // Certifications
@@ -245,7 +242,11 @@ exports.buildPortfolioResume = (res) => {
 
   projects.forEach((p) => {
     subHeading(doc, p.title);
-    doc.font("Helvetica-Oblique").fontSize(10).fillColor("#555555").text(p.tech);
+    doc
+      .font("Helvetica-Oblique")
+      .fontSize(10)
+      .fillColor("#555555")
+      .text(p.tech);
     if (p.link) {
       doc
         .font("Helvetica")
@@ -277,6 +278,24 @@ exports.buildPortfolioResume = (res) => {
     doc.x = sidebarWidth + 40;
     doc.y = 40;
   }
+  // Volunteer Experience
+  mainHeading(doc, "Volunteer Experience");
+
+  subHeading(doc, "Full-Stack Engineer — Murphy Foundation (Uganda)");
+  doc
+    .font("Helvetica")
+    .fontSize(11)
+    .fillColor("#333333")
+    .list(
+      [
+        "Contributed to the development of digital learning and community support tools for underserved regions.",
+        "Collaborated remotely with global engineering teams to build and refine full‑stack features.",
+        "Improved UI/UX accessibility for non-technical users across multiple modules.",
+        "Enhanced backend documentation, structure, and maintainability.",
+      ],
+      { bulletRadius: 1.5, textIndent: 10, bulletIndent: 5 }
+    );
+  doc.moveDown(1);
 
   mainHeading(doc, "Paramedic Experience");
   doc
@@ -299,6 +318,38 @@ exports.buildPortfolioResume = (res) => {
       ],
       { bulletRadius: 1.5, textIndent: 10, bulletIndent: 5 }
     );
+  // --- QR Code (Portfolio Link) ---
+  QRCode.toDataURL("https://giselltavarez.dev", { margin: 1 }, (err, url) => {
+    if (!err) {
+      const qr = url.replace(/^data:image\/png;base64,/, "");
+      const buffer = Buffer.from(qr, "base64");
+
+      doc.addPage();
+      doc.x = 40;
+      doc.y = 60;
+
+      doc
+        .font("Helvetica-Bold")
+        .fontSize(18)
+        .fillColor("#6B4EFF")
+        .text("View My Portfolio", { align: "left" });
+
+      doc.moveDown(0.5);
+
+      doc
+        .font("Helvetica")
+        .fontSize(12)
+        .fillColor("#333")
+        .text(
+          "Scan this QR code to explore my full projects, resume, contact, and more.",
+          { align: "left", width: 350 }
+        );
+
+      doc.image(buffer, 40, doc.y + 10, { width: 140 });
+    }
+
+    doc.end();
+  });
 
   doc.end();
 };
@@ -417,6 +468,27 @@ exports.buildATSResume = (res) => {
       .list(p.bullets, { bulletRadius: 1.5, textIndent: 10, bulletIndent: 5 });
     doc.moveDown(0.6);
   });
+  // Volunteer Experience
+  doc.font("Helvetica-Bold").fontSize(13).text("Volunteer Experience");
+  doc.moveDown(0.2);
+
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(12)
+    .text("Full-Stack Engineer — Murphy Foundation (Uganda)");
+  doc
+    .font("Helvetica")
+    .fontSize(11)
+    .list(
+      [
+        "Support development of digital tools for underserved communities in Uganda.",
+        "Contribute to full‑stack feature development using React, Node, Express, and MongoDB.",
+        "Improve UX accessibility and workflow clarity for non‑technical users.",
+        "Enhance backend reliability, organization, and documentation.",
+      ],
+      { bulletRadius: 1.5, textIndent: 10, bulletIndent: 5 }
+    );
+  doc.moveDown(1);
 
   // Experience
   doc.font("Helvetica-Bold").fontSize(13).text("Professional Experience");
@@ -444,7 +516,9 @@ exports.buildATSResume = (res) => {
   doc
     .font("Helvetica")
     .fontSize(11)
-    .text("TripleTen Software Engineering Program (2024) — Full-Stack JavaScript");
+    .text(
+      "TripleTen Software Engineering Program (2024) — Full-Stack JavaScript"
+    );
   doc.fontSize(11).text("NYC EMS Academy — Paramedic Certification");
   doc.moveDown(0.6);
 
@@ -549,6 +623,28 @@ exports.buildSimpleResume = (res) => {
     doc.font("Helvetica").fontSize(11).text(p.desc, { indent: 10 });
     doc.moveDown(0.6);
   });
+  // Volunteer Experience
+  doc.font("Helvetica-Bold").fontSize(13).text("Volunteer Experience");
+  doc.moveDown(0.2);
+
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(12)
+    .text("Full-Stack Engineer — Murphy Foundation (Uganda)");
+  doc.moveDown(0.2);
+  doc
+    .font("Helvetica")
+    .fontSize(11)
+    .list(
+      [
+        "Contribute to digital learning tools for underserved communities.",
+        "Build and refine full‑stack features with React, Node, and MongoDB.",
+        "Improve user interface accessibility and usability.",
+        "Support documentation and backend structure improvements.",
+      ],
+      { bulletRadius: 1.5, textIndent: 10, bulletIndent: 5 }
+    );
+  doc.moveDown(1);
 
   // Experience
   doc.font("Helvetica-Bold").fontSize(13).text("Professional Experience");
@@ -575,7 +671,9 @@ exports.buildSimpleResume = (res) => {
   doc
     .font("Helvetica")
     .fontSize(11)
-    .text("TripleTen Software Engineering Program (2024) — Full-Stack Web Development");
+    .text(
+      "TripleTen Software Engineering Program (2024) — Full-Stack Web Development"
+    );
   doc.fontSize(11).text("NYC EMS Academy — Paramedic Certification");
   doc.moveDown(0.6);
 
